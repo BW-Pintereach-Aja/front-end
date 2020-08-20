@@ -21,7 +21,7 @@ const Header = () => {
           </Link>
         ) : (
           <Link className="nav-link" to="/signup">
-            SignUp
+            Sign Up
           </Link>
         )}
         {localStorage.getItem("token") ? (
