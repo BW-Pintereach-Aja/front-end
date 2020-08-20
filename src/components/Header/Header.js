@@ -16,21 +16,21 @@ const Header = () => {
           Articles
         </Link>
         {localStorage.getItem("token") ? (
-          <Link className="nav-link" to="/" onClick={signOut}>
-            Logout
-          </Link>
-        ) : (
-          <Link className="nav-link" id="login-btn" to="/login">
-            Login
-          </Link>
-        )}
-        {localStorage.getItem("token") ? (
           <Link className="nav-link" to="/profile">
             Profile
           </Link>
         ) : (
           <Link className="nav-link" to="/signup">
             SignUp
+          </Link>
+        )}
+        {localStorage.getItem("token") ? (
+          <Link className="nav-link" to="/" onClick={signOut}>
+            Sign Out
+          </Link>
+        ) : (
+          <Link className="nav-link" id="login-btn" to="/signin">
+            Sign In
           </Link>
         )}
       </nav>
