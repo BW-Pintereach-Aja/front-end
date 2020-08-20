@@ -1,12 +1,16 @@
-import React from 'react';
-import './App.css';
-import Form from './components/Form';
+import React from "react";
+import "./App.css";
+
+import Header from "./components/Header/Header";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <h1>Create Account</h1>
-      <Form />
+      <Header />
+      <Switch>
+        <Route></Route>
+      </Switch>
     </div>
   );
 }
