@@ -10,15 +10,28 @@ const Header = () => {
 
   return (
     <div className="header">
-      <Link to="/">Pintereach</Link>
+      <Link className="logo" to="/">Pintereach</Link>
       <nav className="nav-links">
-        <Link to="/articles">Articles</Link>
+        <Link className="nav-link" to="/articles">
+          Articles
+        </Link>
         {localStorage.getItem("token") ? (
-          <Link to="/" onClick={signOut}>
+          <Link className="nav-link" to="/" onClick={signOut}>
             Logout
           </Link>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link className="nav-link" id="login-btn" to="/login">
+            Login
+          </Link>
+        )}
+        {localStorage.getItem("token") ? (
+          <Link className="nav-link" to="/profile">
+            Profile
+          </Link>
+        ) : (
+          <Link className="nav-link" to="/signup">
+            SignUp
+          </Link>
         )}
       </nav>
     </div>
