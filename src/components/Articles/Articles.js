@@ -1,14 +1,28 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { connect } from 'react-redux'
-import {addArticle} from '../../redux/actions/articlesActions'
+import {addArticle, greet} from '../../redux/actions/articlesActions'
 
 const Articles = (props) => {
   useEffect(() => {
     props.addArticle()
+    props.greet()
   }, [])
-    return(
-        <h2>Articles will be here</h2>
+  return (
+    <div>
+      {/* {props.articles.map(article => {
+        return <p>{article.articleTitle}</p>
+      })} */}
+      {console.log("GREET", props.articles)}
+      <button onClick = {()=> props.addArticle()}>CLICK</button>
+    </div>
     )
 }
 
-export default connect(null, {addArticle})(Articles)
+const mapStateToProps = state => {
+  return {
+    message: state.message,
+    articles: state.articles
+  }
+}
+
+export default connect(mapStateToProps, {addArticle, greet})(Articles)
