@@ -40,7 +40,7 @@ select:focus {
 
 input:focus {
   outline: none;
-  border-color: pink;
+  border-color:#fddb3a;
 }
 
 input:placeholder {
@@ -48,17 +48,20 @@ input:placeholder {
 }
 
 button {
+  margin-top: 24px;
   color: #41444b;
   background: #fddb3a;
   font-weight: 700;
   padding: 12px 20px;
   margin-left: 12px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
-button:hover {
-  background-image: none;
-  background-color: #4dd0e1;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+button:hover{
+background-image: none;
+background: #ffe97a;
 }
 
 button:disabled {

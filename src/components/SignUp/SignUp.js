@@ -105,7 +105,8 @@ export default function SignUp() {
   return (
     <form onSubmit={formSubmit}>
       {serverError ? <p className="error">{serverError}</p> : null}
-
+    <h1>Welcome to Pintereach!</h1>
+    <h3>Please register for an account.</h3>
       <label htmlFor="firstName">
         First Name
         <input
@@ -129,7 +130,7 @@ export default function SignUp() {
         {errors.lastName.length > 0 ? <p className="error">{errors.lastName}</p> : null}
       </label>
       <label htmlFor="username">
-        username
+        Username
         <input
           id="username"
           type="text"
@@ -168,7 +169,7 @@ export default function SignUp() {
           <p className="error">{errors.terms}</p>
         ) : null}
       </label>
-      <button disabled={buttonDisabled} type="submit" onClick={e=> formSubmit(e)}>
+      <button disabled={buttonDisabled} type="submit">
         Submit
       </button>
       {/* <pre>{JSON.stringify(post, null, 2)}</pre> */}
