@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createStore, combineReducers,applyMiddleware } from "redux";
-import { Provider  } from "react-redux";
-import thunk from 'redux-thunk'
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 import { articlesReducer } from "./redux/reducers/articlesReducer";
 import { userReducer } from "./redux/reducers/userReducer";
 

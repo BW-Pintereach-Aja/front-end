@@ -2,8 +2,6 @@ import {ADD_ARTICLES, GREET} from '../actions/articlesActions'
 
 const initialState = {
   data: [],
-  message: "HELLO",
-  greet: ''
 }
 
 export const articlesReducer = (state = initialState, action) => {

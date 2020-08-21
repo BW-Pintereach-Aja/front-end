@@ -1,28 +1,35 @@
-import React, {useEffect, useState} from "react";
-import { connect } from 'react-redux'
-import {addArticle, greet} from '../../redux/actions/articlesActions'
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { addArticle, greet } from "../../redux/actions/articlesActions";
+
+import ArticleCard from "../ArticleCard/ArticleCard";
 
 const Articles = (props) => {
   useEffect(() => {
-    props.addArticle()
-    props.greet()
-  }, [])
+    props.addArticle();
+  }, []);
   return (
     <div>
-      {/* {props.articles.map(article => {
-        return <p>{article.articleTitle}</p>
-      })} */}
-      {console.log("GREET", props.articles)}
-      <button onClick = {()=> props.addArticle()}>CLICK</button>
+      {props.articles.map((article) => {
+        return (
+          <ArticleCard
+            key={article.articleID}
+            url={article.url}
+            articleTitle={article.articleTitle}
+            articleDesc={article.articleDesc}
+            category={article.category}
+            aboutCategory={article.aboutCategory}
+          />
+        );
+      })}
     </div>
-    )
-}
+  );
+};
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    message: state.message,
-    articles: state.articles
-  }
-}
-
-export default connect(mapStateToProps, {addArticle, greet})(Articles)
+    message: state.articlesReducer.message,
+    articles: state.articlesReducer.data,
+  };
+};
+export default connect(mapStateToProps, { addArticle, greet })(Articles);
