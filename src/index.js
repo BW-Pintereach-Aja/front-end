@@ -1,29 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-
 import { BrowserRouter as Router } from "react-router-dom";
-
-import { createStore, combineReducers } from "redux";
-import { Provider } from "react-redux";
-
+import { createStore, combineReducers,applyMiddleware } from "redux";
+import { Provider  } from "react-redux";
+import thunk from 'redux-thunk'
 import { articlesReducer } from "./redux/reducers/articlesReducer";
 import { userReducer } from "./redux/reducers/userReducer";
 
+import App from "./App";
+import "./index.css";
+
 const rootReducer = combineReducers({
-  // articlesReducer,
-  // userReducer,
+  articlesReducer,
+  userReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <Provider store={store}>
     <Router>
+  <Provider store={store}>
       <App />
-    </Router>
-  </Provider>,
+  </Provider>
+    </Router>,
   document.getElementById("root")
 );
 

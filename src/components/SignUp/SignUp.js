@@ -2,25 +2,29 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
 
+import "./SignUp.scss";
+
+const initialForm = {
+          firstName: "",
+          lastName: "",
+          username: "",
+          password: "",
+          terms: true,
+        }
+
 export default function SignUp() {
-
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    password: "",
-    terms: true
-  });
-
+  const [formState, setFormState] = useState(initialForm);
 
   const [serverError, setServerError] = useState("");
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const [errors, setErrors] = useState({
-    name: "",
-    email: "",
+    firstName: "",
+    lastName: "",
+    username: "",
     password: "",
-    terms: ""
+    terms: "",
   });
 
   // temporary state used to display response from API. this is not a commonly used convention
@@ -33,16 +37,15 @@ export default function SignUp() {
       .then((valid) => {
         setErrors({
           ...errors,
-          [e.target.name]: ""
+          [e.target.name]: "",
         });
       })
       .catch((err) => {
         console.log(err);
 
-
         setErrors({
           ...errors,
-          [e.target.name]: err.errors[0]
+          [e.target.name]: err.errors[0],
         });
       });
   };
@@ -51,17 +54,13 @@ export default function SignUp() {
     e.preventDefault();
     console.log("form submitted!");
     axios
-      .post("https://reqres.in/api/users", formState)
+      .post("https://bw-pintereach-aja.herokuapp.com/api/auth/register", formState)
       .then((res) => {
         console.log("success!", res.data);
-        setPost(res.data);
+        localStorage.setItem('token', res.data.token)
+        // setPost(res.data);
         setServerError(null);
-        setFormState({
-          name: "",
-          email: "",
-          password: "",
-          terms: true
-        });
+        setFormState(initialForm);
       })
       .catch((err) => {
         setServerError("oops! something happened!");
@@ -74,29 +73,28 @@ export default function SignUp() {
     const newFormData = {
       ...formState,
       [e.target.name]:
-        e.target.type === "checkbox" ? e.target.checked : e.target.value
+        e.target.type === "checkbox" ? e.target.checked : e.target.value,
     };
 
     validateChange(e);
     setFormState(newFormData);
   };
 
-
   const formSchema = yup.object().shape({
-    name: yup.string().required("Name is a required field"),
-    email: yup
+    firstName: yup.string().required("Name is a required field"),
+    lastName: yup.string().required("Name is a required field"),
+    username: yup
       .string()
-      .email("Must be a valid email")
-      .required("Must include an email"), 
-    password: yup.string()
-        .required('Please create a password')
-        .matches(
+      .required("Must include a username"),
+    password: yup
+      .string()
+      .required("Please create a password")
+      .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
         "Password does not meet criteria."
-        ),
-    terms: yup.boolean().oneOf([true], "Please agree to Terms & Conditions")
+      ),
+    terms: yup.boolean().oneOf([true], "Please agree to Terms & Conditions"),
   });
-
 
   useEffect(() => {
     formSchema.isValid(formState).then((isValid) => {
@@ -108,41 +106,51 @@ export default function SignUp() {
     <form onSubmit={formSubmit}>
       {serverError ? <p className="error">{serverError}</p> : null}
 
-      <label htmlFor="name">
-        Name
+      <label htmlFor="firstName">
+        First Name
         <input
-          id="name"
+          id="firstName"
           type="text"
-          name="name"
-          value={formState.name}
+          name="firstName"
+          value={formState.firstName}
           onChange={inputChange}
         />
-        {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
+        {errors.firstName.length > 0 ? <p className="error">{errors.firstName}</p> : null}
       </label>
-      <label htmlFor="email">
-        Email
+      <label htmlFor="lastName">
+        Last Name
         <input
-          id="email"
+          id="lastName"
           type="text"
-          name="email"
-          value={formState.email}
+          name="lastName"
+          value={formState.lastName}
           onChange={inputChange}
         />
-        {errors.email.length > 0 ? (
-          <p className="error">{errors.email}</p>
+        {errors.lastName.length > 0 ? <p className="error">{errors.lastName}</p> : null}
+      </label>
+      <label htmlFor="username">
+        username
+        <input
+          id="username"
+          type="text"
+          name="username"
+          value={formState.username}
+          onChange={inputChange}
+        />
+        {errors.username.length > 0 ? (
+          <p className="error">{errors.username}</p>
         ) : null}
       </label>
 
       <label htmlFor="password">
         Password:
         <input
-            type="password"
-            id="password"
-             name="password"
-             value={formState.password}
-             onChange={inputChange}
+          type="password"
+          id="password"
+          name="password"
+          value={formState.password}
+          onChange={inputChange}
         />
-
         {errors.password.length > 0 ? (
           <p className="error">{errors.password}</p>
         ) : null}
@@ -153,13 +161,14 @@ export default function SignUp() {
           id="terms"
           name="terms"
           checked={formState.terms}
-          onChange={inputChange}/>
+          onChange={inputChange}
+        />
         Terms & Conditions
         {errors.terms.length > 0 ? (
           <p className="error">{errors.terms}</p>
         ) : null}
       </label>
-      <button disabled={buttonDisabled} type="submit">
+      <button disabled={buttonDisabled} type="submit" onClick={e=> formSubmit(e)}>
         Submit
       </button>
       {/* <pre>{JSON.stringify(post, null, 2)}</pre> */}

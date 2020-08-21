@@ -1,7 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
+import "./SignIn.scss";
 
 const SignIn = () => {
-    return <h2>A beautiful form will be build here</h2>
-}
+  const history = useHistory();
+
+  const [signIn, setSingIn] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setSingIn({
+      ...signIn,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://bw-pintereach-aja.herokuapp.com/api/auth/login", signIn)
+      .then((res) => {
+        console.log(res.data);
+        window.localStorage.setItem("token", res.data.token);
+        history.push("/articles/");
+        window.location.reload(true)
+      })
+      .catch((err) => console.error("Could not sign in: ", err.message));
+  };
+
+  return (
+    <>
+      <h2>Welcome Back to Pintereach</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="username"
+          value={signIn.username}
+          placeholder="Username..."
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          name="password"
+          value={signIn.password}
+          placeholder="Password..."
+          onChange={handleChange}
+        />
+        <button>Sign In</button>
+      </form>
+    </>
+  );
+};
 
 export default SignIn;

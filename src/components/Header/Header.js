@@ -6,15 +6,20 @@ import "./Header.scss";
 const Header = () => {
   const signOut = () => {
     localStorage.removeItem("token");
+    window.location.reload("/");
   };
 
   return (
     <div className="header">
-      <Link className="logo" to="/">Pintereach</Link>
+      <Link className="logo" to="/">
+        Pintereach
+      </Link>
       <nav className="nav-links">
-        <Link className="nav-link" to="/articles">
-          Articles
-        </Link>
+        {localStorage.getItem("token") ? (
+          <Link className="nav-link" to="/articles">
+            Articles
+          </Link>
+        ) : null}
         {localStorage.getItem("token") ? (
           <Link className="nav-link" to="/profile">
             Profile
