@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { addArticle, greet } from "../../redux/actions/articlesActions";
 
+import "./Articles.scss";
+
 import ArticleCard from "../ArticleCard/ArticleCard";
 
 const Articles = (props) => {
@@ -9,7 +11,7 @@ const Articles = (props) => {
     props.addArticle();
   }, []);
   return (
-    <div>
+    <div class="card-list">
       {props.articles.map((article) => {
         return (
           <ArticleCard
