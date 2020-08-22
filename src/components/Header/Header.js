@@ -25,17 +25,18 @@ const Header = () => {
             Profile
           </Link>
         ) : (
-          <Link className="nav-link" to="/signup">
-            Sign Up
-          </Link>
+        <Link className="nav-link"  to="/signin">
+           Sign In
+        </Link>
+
         )}
         {localStorage.getItem("token") ? (
           <Link className="nav-link" to="/" onClick={signOut}>
             Sign Out
           </Link>
         ) : (
-          <Link className="nav-link" id="login-btn" to="/signin">
-            Sign In
+          <Link className="nav-link" id="signup-btn" to="/signup">
+            Sign Up
           </Link>
         )}
       </nav>
