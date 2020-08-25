@@ -66,7 +66,7 @@ const ArticlesCard = ({
         className="edit-btn">
           Edit
         </Link>
-        <button
+        <button className="delete-btn"
           onClick={(e) => {
             e.stopPropagation();
             deleteArticle(id);

@@ -8,16 +8,14 @@
     border-radius: 4px;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
     padding: 8px;
-    // background: #eee;
-    // width: 25vw;
-    // margin: 30px 40px;
-    // padding: 30px;
 
     .article-btn {
         align-self: flex-end;
         text-align: center;
-        background-color: #fddb3a;
-        width: 64px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        background-color: #fddb3agit ;
+        width: 72px;
         color: #000;
         margin: 26px 12px 8px 12px;
         margin-top: 26px;
@@ -30,6 +28,19 @@
         }
     }
 
+    .delete-btn {
+        background: none;
+        padding: 0;
+        box-shadow: none;
+        margin-left: 8px;
+    }
+
+    .edit-btn{
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: #41444b;
+        font-weight: 700;
+    }
     a {
         align-self: flex-end;
         text-decoration: none;

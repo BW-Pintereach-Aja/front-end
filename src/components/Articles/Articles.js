@@ -15,9 +15,9 @@ const Articles = (props) => {
     props.fetchArticles();
   }, []);
 
-  if (props.isFetching) {
-    return <h2 className="loading">*** Loading Articles ***</h2>;
-  }
+  // if (props.isFetching) {
+  //   return <h2 className="loading">*** Loading Articles ***</h2>;
+  // }
 
   return (
     <>
