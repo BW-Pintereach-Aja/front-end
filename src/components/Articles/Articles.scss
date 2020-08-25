@@ -1,4 +1,11 @@
 .card-list {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.loading {
+    color: #41444b;
+    font-size: 3rem;
+    margin: 60px auto;
 }
