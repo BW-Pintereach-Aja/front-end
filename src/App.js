@@ -15,8 +15,10 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Route exact path="/">
+        <Home />
+        </Route>
       <Switch>
-        <Route exact path="/" component={Home} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <PrivateRoute path="/profile" component={Profile} />

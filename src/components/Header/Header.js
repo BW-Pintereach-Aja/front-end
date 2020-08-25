@@ -31,7 +31,7 @@ const Header = () => {
 
         )}
         {localStorage.getItem("token") ? (
-          <Link className="nav-link" to="/" onClick={signOut}>
+          <Link className="nav-link" id="signout-btn" to="/" onClick={signOut}>
             Sign Out
           </Link>
         ) : (
