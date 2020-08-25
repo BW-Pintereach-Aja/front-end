@@ -6,7 +6,7 @@ import AddCategory from "../AddCategory/AddCategory";
 
 import "./Category.scss";
 
-const Category= () => {
+const Category = (props) => {
 
     const [showModal, setShowModal] = useState(false);
 
@@ -24,6 +24,7 @@ const Category= () => {
                 <AddCategory />
             </Modal>
             <button 
+            className="new-btn"
             type="button" 
             onClick={openModal}
             >

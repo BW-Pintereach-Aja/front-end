@@ -14,6 +14,7 @@ const initialForm = {
         }
 
 export default function SignUp() {
+
   const [formState, setFormState] = useState(initialForm);
 
   const [serverError, setServerError] = useState("");
