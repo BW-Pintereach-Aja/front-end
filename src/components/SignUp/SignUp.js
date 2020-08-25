@@ -47,10 +47,13 @@ export default function SignUp() {
     e.preventDefault();
     console.log("form submitted!");
     axios
-      .post("https://bw-pintereach-aja.herokuapp.com/api/auth/register", formState)
+      .post(
+        "https://bw-pintereach-aja.herokuapp.com/api/auth/register",
+        formState
+      )
       .then((res) => {
         console.log("success!", res.data);
-        localStorage.setItem('token', res.data.token)
+        localStorage.setItem("token", res.data.token);
         // setPost(res.data);
         setServerError(null);
         setFormState(initialForm);
@@ -76,9 +79,7 @@ export default function SignUp() {
   const formSchema = yup.object().shape({
     firstName: yup.string().required("Name is a required field"),
     lastName: yup.string().required("Name is a required field"),
-    username: yup
-      .string()
-      .required("Must include a username"),
+    username: yup.string().required("Must include a username"),
     password: yup
       .string()
       .required("Please create a password")
@@ -114,7 +115,9 @@ export default function SignUp() {
           value={formState.firstName}
           onChange={inputChange}
         />
-        {errors.firstName.length > 0 ? <p className="error">{errors.firstName}</p> : null}
+        {errors.firstName.length > 0 ? (
+          <p className="error">{errors.firstName}</p>
+        ) : null}
       </label>
       <label htmlFor="lastName">
         Last Name
@@ -125,7 +128,9 @@ export default function SignUp() {
           value={formState.lastName}
           onChange={inputChange}
         />
-        {errors.lastName.length > 0 ? <p className="error">{errors.lastName}</p> : null}
+        {errors.lastName.length > 0 ? (
+          <p className="error">{errors.lastName}</p>
+        ) : null}
       </label>
       <label htmlFor="username">
         Username
@@ -180,7 +185,11 @@ export default function SignUp() {
           <p className="error">{errors.terms}</p>
         ) : null}
       </label>
-      <button disabled={buttonDisabled} type="submit">
+      <button
+        disabled={buttonDisabled}
+        type="submit"
+        onClick={(e) => formSubmit(e)}
+      >
         Create Account
       </button>
       {/* <pre>{JSON.stringify(post, null, 2)}</pre> */}

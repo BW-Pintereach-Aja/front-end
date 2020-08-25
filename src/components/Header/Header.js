@@ -16,6 +16,12 @@ const Header = () => {
       </Link>
       <nav className="nav-links">
         {localStorage.getItem("token") ? (
+          <Link className="nav-link" to="/add-new-article">
+            {" "}
+            Add Article{" "}
+          </Link>
+        ) : null}
+        {localStorage.getItem("token") ? (
           <Link className="nav-link" to="/articles">
             Articles
           </Link>

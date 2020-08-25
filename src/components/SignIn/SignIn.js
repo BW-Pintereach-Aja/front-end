@@ -27,7 +27,7 @@ const SignIn = () => {
         console.log(res.data);
         window.localStorage.setItem("token", res.data.token);
         history.push("/articles/");
-        window.location.reload(true)
+        window.location.reload(true);
       })
       .catch((err) => console.error("Could not sign in: ", err.message));
   };
