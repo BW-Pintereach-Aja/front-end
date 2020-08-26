@@ -19,7 +19,7 @@ const Articles = (props) => {
   }
 
   return (
-    <div class="card-list">
+    <div className="card-list">
       {props.articles.map((article) => {
         return (
           <ArticleCard
@@ -27,8 +27,8 @@ const Articles = (props) => {
             key={article.articleID}
             id={article.articleID}
             url={article.url}
-            articleTitle={article.articleTitle}
-            articleDesc={article.articleDesc}
+            title={article.articleTitle}
+            desc={article.articleDesc}
             category={article.category}
             aboutCategory={article.aboutCategory}
             articleCard={articleCard}

@@ -11,23 +11,25 @@ import "./ArticleCard.scss";
 const ArticlesCard = ({
   id,
   url,
-  articleTitle,
-  articleDesc,
+  title,
+  desc,
   category,
   aboutCategory,
   deleteArticle,
+  ...props
 }) => {
   return (
     <div className="card-body">
       <a href={url}>
-        <h3>{articleTitle}</h3>
-        <p>{articleDesc}</p>
+        <h3>{title}</h3>
+        <p>{desc}</p>
         <p>{category}</p>
         <p>{aboutCategory}</p>
+        <h2>Params: {props.params}</h2>
       </a>
       <div className="edit-delete-container">
         <Link
-          to="/article-editor/"
+          to="/article-update/:id"
           className="edit-btn"
           onClick={(e) => fetchSingleArticle(id)}
         >

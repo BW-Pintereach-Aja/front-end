@@ -56,7 +56,6 @@ export const fetchSingleArticle = (id) => (dispatch) => {
   axiosWithAuth()
     .get(`/api/articles/${id}`)
     .then((res) => {
-      console.log("Single Article ---> ", res.data);
       dispatch({ type: ARTICLE_SUCCESS, payload: res.data });
     })
     .catch((err) => dispatch({ type: ARTICLE_FAIL, payload: err.message }));
