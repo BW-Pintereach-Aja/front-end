@@ -19,29 +19,30 @@ const Articles = (props) => {
   //   return <h2 className="loading">*** Loading Articles ***</h2>;
   // }
 
+  console.log("ARTICLES", props.articles);
   return (
     <>
-    <div className="category">
-      <Category />
-    </div>
-    <div className="card-list">
-      {props.articles.map((article) => {
-        return (
-          <ArticleCard
-            article={article}
-            key={article.articleID}
-            id={article.articleID}
-            url={article.url}
-            articleTitle={article.articleTitle}
-            articleDesc={article.articleDesc}
-            category={article.category}
-            aboutCategory={article.aboutCategory}
-            articleCard={articleCard}
-            setArticleCard={setArticleCard}
-          />
-        );
-      })}
-    </div>
+      <div className="category">
+        <Category />
+      </div>
+      <div className="card-list">
+        {props.articles.map((article) => {
+          return (
+            <ArticleCard
+              article={article}
+              key={article.articleID}
+              id={article.articleID}
+              url={article.url}
+              articleTitle={article.articleTitle}
+              articleDesc={article.articleDesc}
+              category={article.category}
+              aboutCategory={article.aboutCategory}
+              articleCard={articleCard}
+              setArticleCard={setArticleCard}
+            />
+          );
+        })}
+      </div>
     </>
   );
 };

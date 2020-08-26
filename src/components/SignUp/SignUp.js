@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
 
+import { useHistory } from "react-router-dom";
+
 import "./SignUp.scss";
 
 const initialForm = {
@@ -47,14 +49,13 @@ export default function SignUp() {
     e.preventDefault();
     console.log("form submitted!");
     axios
-      .post(
-        "https://bw-pintereach-aja.herokuapp.com/api/auth/register",
-        formState
-      )
+      .post("/api/auth/register", formState)
       .then((res) => {
         console.log("success!", res.data);
-        localStorage.setItem("token", res.data.token);
         // setPost(res.data);
+        window.localStorage.setItem("token", res.data.token);
+        window.localStorage.setItem("userID", res.data.id);
+        history.push("/articles/");
         setServerError(null);
         setFormState(initialForm);
       })
