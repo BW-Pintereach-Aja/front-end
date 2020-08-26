@@ -37,6 +37,8 @@ const SignIn = () => {
     <>
       <h2>Welcome Back to Pintereach</h2>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="username">
+        Username:
         <input
           type="text"
           name="username"
@@ -44,6 +46,9 @@ const SignIn = () => {
           placeholder="Username..."
           onChange={handleChange}
         />
+        </label>
+        <label htmlForm="password">
+          Password:
         <input
           type="password"
           name="password"
@@ -51,6 +56,7 @@ const SignIn = () => {
           placeholder="Password..."
           onChange={handleChange}
         />
+        </label>
         <button>Sign In</button>
       </form>
     </>

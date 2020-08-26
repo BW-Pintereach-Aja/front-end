@@ -1,6 +1,49 @@
 .card-body {
-    background: #eee;
-    width: 25vw;
-    margin: 30px 40px;
-    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background: #FFF;
+    width: 20vw;
+    margin: 8px;
+    border-top: 16px solid #fddb3a;
+    border-radius: 4px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+
+    .article-btn {
+        align-self: flex-end;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+        background-color: #fddb3a;
+        width: 72px;
+        color: #000;
+        margin: 26px 12px 8px 12px;
+        margin-top: 26px;
+        padding: 8px 8px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+
+        &:hover {
+           background-color: #ffe97a;
+        }
+    }
+
+    .delete-btn {
+        background: none;
+        padding: 0;
+        box-shadow: none;
+        margin-left: 8px;
+        cursor: pointer;
+    }
+
+    .edit-btn{
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: #41444b;
+        font-weight: 700;
+    }
+    a {
+        align-self: flex-end;
+        text-decoration: none;
+    }
 }

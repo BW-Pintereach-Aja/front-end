@@ -5,6 +5,7 @@ import { fetchArticles } from "../../redux/actions/articlesActions";
 import "./Articles.scss";
 
 import ArticleCard from "../ArticleCard/ArticleCard";
+import Category from "../Category/Category";
 
 const Articles = (props) => {
   const [articleCard, setArticleCard] = useState(props.articles);
@@ -14,11 +15,13 @@ const Articles = (props) => {
     props.fetchArticles();
   }, []);
 
-  if (props.isFetching) {
-    return <h2 className="loading">*** Loading Articles ***</h2>;
-  }
+  // if (props.isFetching) {
+  //   return <h2 className="loading">*** Loading Articles ***</h2>;
+  // }
 
+  console.log("ARTICLES", props.articles);
   return (
+<<<<<<< HEAD
     <div className="card-list">
       {props.articles.map((article) => {
         return (
@@ -37,6 +40,31 @@ const Articles = (props) => {
         );
       })}
     </div>
+=======
+    <>
+      <div className="category">
+        <Category />
+      </div>
+      <div className="card-list">
+        {props.articles.map((article) => {
+          return (
+            <ArticleCard
+              article={article}
+              key={article.articleID}
+              id={article.articleID}
+              url={article.url}
+              articleTitle={article.articleTitle}
+              articleDesc={article.articleDesc}
+              category={article.category}
+              aboutCategory={article.aboutCategory}
+              articleCard={articleCard}
+              setArticleCard={setArticleCard}
+            />
+          );
+        })}
+      </div>
+    </>
+>>>>>>> feature/categories
   );
 };
 

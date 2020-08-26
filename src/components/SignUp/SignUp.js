@@ -7,15 +7,19 @@ import { useHistory } from "react-router-dom";
 import "./SignUp.scss";
 
 const initialForm = {
-  firstName: "",
-  lastName: "",
-  username: "",
-  password: "",
-  terms: true,
-};
+          firstName: "",
+          lastName: "",
+          username: "",
+          password: "",
+          confirmpassword: "",
+          terms: true,
+        }
 
 export default function SignUp() {
+<<<<<<< HEAD
   const history = useHistory();
+=======
+>>>>>>> feature/categories
 
   const [formState, setFormState] = useState(initialForm);
 
@@ -23,16 +27,7 @@ export default function SignUp() {
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
-  const [errors, setErrors] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
-    password: "",
-    terms: "",
-  });
-
-  // temporary state used to display response from API. this is not a commonly used convention
-  const [post, setPost] = useState([]);
+  const [errors, setErrors] = useState(initialForm);
 
   const validateChange = (e) => {
     yup
@@ -97,6 +92,11 @@ export default function SignUp() {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
         "Password does not meet criteria."
       ),
+    confirmpassword: yup
+    .string()
+    .required("Please confirm password")
+    .oneOf([yup.ref('password'), null], 'Passwords must match'
+    ),
     terms: yup.boolean().oneOf([true], "Please agree to Terms & Conditions"),
   });
 
@@ -109,7 +109,8 @@ export default function SignUp() {
   return (
     <form onSubmit={formSubmit}>
       {serverError ? <p className="error">{serverError}</p> : null}
-
+    <h1>Welcome to Pintereach!</h1>
+    <h3>Please register for an account.</h3>
       <label htmlFor="firstName">
         First Name
         <input
@@ -137,7 +138,7 @@ export default function SignUp() {
         ) : null}
       </label>
       <label htmlFor="username">
-        username
+        Username
         <input
           id="username"
           type="text"
@@ -163,6 +164,19 @@ export default function SignUp() {
           <p className="error">{errors.password}</p>
         ) : null}
       </label>
+      <label htmlFor="confirmpassword">
+        Confirm Password:
+        <input
+          type="password"
+          id="confirmpassword"
+          name="confirmpassword"
+          value={formState.confirmpassword}
+          onChange={inputChange}
+        />
+        {errors.confirmpassword.length > 0 ? (
+          <p className="error">{errors.confirmpassword}</p>
+        ) : null}
+      </label>
       <label htmlFor="terms" className="terms">
         <input
           type="checkbox"
@@ -181,7 +195,7 @@ export default function SignUp() {
         type="submit"
         onClick={(e) => formSubmit(e)}
       >
-        Submit
+        Create Account
       </button>
       {/* <pre>{JSON.stringify(post, null, 2)}</pre> */}
     </form>
