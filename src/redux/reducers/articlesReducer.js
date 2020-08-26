@@ -2,6 +2,7 @@ import {
 	FETCH_ARTICLES_START,
 	FETCH_ARTICLES_SUCCESS,
 	FETCH_ARTICLES_FAIL,
+	FETCH_CATEGORIES,
 	ARTICLE_START,
 	ARTICLE_SUCCESS,
 	ARTICLE_FAIL,
@@ -16,7 +17,8 @@ import {
 const initialState = {
 	data: [],
 	isFetching: false,
-	error: ''
+	error: '',
+	categories: []
 }
 
 export const articlesReducer = (state = initialState, action) => {
@@ -39,6 +41,12 @@ export const articlesReducer = (state = initialState, action) => {
 			return {
 				...state,
 				error: action.payload
+			}
+		case FETCH_CATEGORIES:
+			console.log('FETCH CATEGORIES', action.payload)
+			return {
+				...state,
+				categories: action.payload
 			}
 		case ARTICLE_START:
 			return {

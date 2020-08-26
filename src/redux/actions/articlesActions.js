@@ -3,6 +3,7 @@ import axiosWithAuth from '../../utils/axiosWithAuth'
 export const FETCH_ARTICLES_START = 'FETCH_ARTICLES_START'
 export const FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS'
 export const FETCH_ARTICLES_FAIL = 'FETCH_ARTICLES_FAIL'
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 
 export const ADD_ARTICLE_START = 'ADD_ARTICLE_START'
 export const ADD_ARTICLE_SUCCESS = 'ADD_ARTICLE_SUCCESS'
@@ -69,4 +70,17 @@ export const updateSingleArticle = (id, article) => (dispatch) => {
 			dispatch({ type: ARTICLE_UPDATE_SUCCESS })
 		})
 		.catch((err) => dispatch({ type: ARTICLE_UPDATE_FAIL, payload: err.message }))
+}
+
+export const fetchCategories = () => (dispatch) => {
+	axiosWithAuth()
+		.get('/api/articles/categories')
+		.then((res) => {
+			console.log(res.data)
+
+			dispatch({ type: FETCH_CATEGORIES, payload: res.data })
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 }
