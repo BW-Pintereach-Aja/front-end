@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 import * as yup from "yup";
 import axios from "axios";
 import AddCategory from "../AddCategory/AddCategory";
+import NewArticle from "../NewArticle/NewArticle";
 
 import "./Category.scss";
 
@@ -18,18 +19,29 @@ const Category = (props) => {
     setShowModal(false);
     }
 
+    
+
         return (
-          <main>
+          <main>        
             <Modal handleClose={closeModal} show={showModal}>
                 <AddCategory />
             </Modal>
+
             <button 
-            className="new-btn"
+            className="newcat-btn"
             type="button" 
             onClick={openModal}
             >
               + New Category
             </button>
+            {/* <button 
+            className="newart-btn"
+            type="button" 
+            onClick={openModal}
+            >
+              + New Article
+            </button> */}
+
             
           </main>
         );
@@ -51,6 +63,8 @@ const Modal = ({show, children, handleClose}) => {
       </div>
     );
   };
+
+  
 
 
 

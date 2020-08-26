@@ -124,7 +124,7 @@ const AddCategory = () => {
             <button className="create-btn" disabled={buttonDisabled} type="submit">
                 Create Category
             </button>               
-            <pre>{JSON.stringify(post, null, 2)}</pre>       
+            {/* <pre>{JSON.stringify(post, null, 2)}</pre>        */}
         </form>
     )
 }

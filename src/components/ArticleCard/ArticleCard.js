@@ -54,13 +54,7 @@ const ArticlesCard = ({
             <option>  Move to...</option>
             {/* need to map categories here */}
         </select>
-
-    <a href={url}>  
-      <div className="article-btn">
-      Go to article
-      </div>
-    </a>
-      <div className="edit-delete-container">
+        <div className="edit-delete-container">
         <Link to="/article-editor/"
         // onClick={toggleModal} 
         className="edit-btn">
@@ -76,6 +70,13 @@ const ArticlesCard = ({
           Delete
         </button>
       </div>
+
+    <a href={url}>  
+      <div className="article-btn">
+      Go to article
+      </div>
+    </a>
+
       {/* <Modali.Modal {...modal}>
         <ArticleEditor articleID={articleID} toggleModal={toggleModal} />
       </Modali.Modal> */}
