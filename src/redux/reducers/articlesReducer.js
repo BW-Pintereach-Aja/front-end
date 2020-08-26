@@ -74,6 +74,11 @@ export const articlesReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case ARTICLE_UPDATE_SUCCESS:
+      const singleArticle = state.data.filter(article => article.id === action.payload.articleID)
+      return {
+        ...singleArticle
+      }
     default:
       return state;
   }

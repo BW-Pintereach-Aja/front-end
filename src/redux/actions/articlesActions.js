@@ -46,7 +46,6 @@ export const addNewArticle = (userId, newArticle) => (dispatch) => {
     .then((res) => {
       console.log("new article sent: ", res.data);
       dispatch({ type: ADD_ARTICLE_SUCCESS, payload: res.data });
-      // history.push("/articles/");
     })
     .catch((err) => dispatch({ type: ADD_ARTICLE_FAIL, payload: err.message }));
 };

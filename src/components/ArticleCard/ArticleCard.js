@@ -25,11 +25,11 @@ const ArticlesCard = ({
         <p>{desc}</p>
         <p>{category}</p>
         <p>{aboutCategory}</p>
-        <h2>Params: {props.params}</h2>
+        {/* <h2>Params: {props.params}</h2> */}
       </a>
       <div className="edit-delete-container">
         <Link
-          to="/article-update/:id"
+          to={`/article-update/${id}`}
           className="edit-btn"
           onClick={(e) => fetchSingleArticle(id)}
         >
@@ -49,8 +49,8 @@ const ArticlesCard = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  // article: state.articlesReducer.data
-};
+// const mapStateToProps = (state) => {
+//   // article: state.articlesReducer.data
+// };
 
-export default connect(mapStateToProps, { deleteArticle, fetchSingleArticle })(ArticlesCard);
+export default connect(null, { deleteArticle, fetchSingleArticle })(ArticlesCard);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import {
@@ -9,33 +9,28 @@ import {
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
+  const history = useHistory();
+
   const [editArticle, setEditArticle] = useState({
-    articleID: id,
     title: title,
     desc: desc,
     categoryID: 1,
     url: url,
   });
 
-  useEffect(() => {
-    // const id = props.match.params.id
-    const id = editArticle.articleID;
-    console.log("article id:", id);
+  const articleID = props.match.params.id;
 
-    fetchSingleArticle(editArticle.articleID);
+  useEffect(() => {
+    console.log("article id:", articleID);
+
     axiosWithAuth()
-      .get(`/api/articles/${id}`)
+      .get(`/api/articles/${articleID}`)
       .then((res) => {
         setEditArticle(res.data[0]);
-        console.log("Single Article ---> ", props.articles);
+        console.log("Single Article ---> ", editArticle.articleID);
       })
       .catch((err) => console.error(err.response));
   }, []);
-
-  console.log("editing article here:", editArticle);
-  console.log("articles: ", props.article);
-
-  console.log("Single Article ---> ", props.articles);
 
   useEffect(() => {
     fetchSingleArticle(id);
@@ -48,10 +43,16 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
     });
   };
 
+  const submitUpdateArticle = (e) => {
+    e.preventDefault();
+    updateSingleArticle(articleID, editArticle);
+    history.push("/articles/");
+  };
+
   return (
     <div className="new-article">
       <h2>Edit Your Article</h2>
-      <form onSubmit={updateSingleArticle}>
+      <form onSubmit={submitUpdateArticle}>
         <input
           type="text"
           name="title"
@@ -86,12 +87,20 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
   );
 };
 
-const mapDispatchToProps = () => {
+const mapStateToProps = (state) => {
   return {
-    fetchSingleArticle,
+    articles: state.articlesReducer.data,
+    isFetching: state.articlesReducer.isFetching,
   };
 };
 
-export default connect(null, {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchSingleArticle,
+    updateSingleArticle,
+  };
+};
+
+export default connect(mapStateToProps, {
   mapDispatchToProps,
 })(ArticleUpdate);
