@@ -21,26 +21,6 @@ const Articles = (props) => {
 
   console.log("ARTICLES", props.articles);
   return (
-<<<<<<< HEAD
-    <div className="card-list">
-      {props.articles.map((article) => {
-        return (
-          <ArticleCard
-            article={article}
-            key={article.articleID}
-            id={article.articleID}
-            url={article.url}
-            title={article.articleTitle}
-            desc={article.articleDesc}
-            category={article.category}
-            aboutCategory={article.aboutCategory}
-            articleCard={articleCard}
-            setArticleCard={setArticleCard}
-          />
-        );
-      })}
-    </div>
-=======
     <>
       <div className="category">
         <Category />
@@ -64,7 +44,6 @@ const Articles = (props) => {
         })}
       </div>
     </>
->>>>>>> feature/categories
   );
 };
 

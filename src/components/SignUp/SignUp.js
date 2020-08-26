@@ -16,10 +16,7 @@ const initialForm = {
         }
 
 export default function SignUp() {
-<<<<<<< HEAD
   const history = useHistory();
-=======
->>>>>>> feature/categories
 
   const [formState, setFormState] = useState(initialForm);
 

@@ -48,6 +48,7 @@ const NewArticle = (props) => {
           onChange={handleChange}
           placeholder="Title..."
         />
+        <label>Description</label>
         <input
           type="text"
           name="desc"
@@ -55,6 +56,7 @@ const NewArticle = (props) => {
           onChange={handleChange}
           placeholder="Description..."
         />
+        <label>Article Link</label>
         <input
           type="text"
           name="url"
