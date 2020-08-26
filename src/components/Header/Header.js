@@ -16,6 +16,12 @@ const Header = () => {
       </Link>
       <nav className="nav-links">
         {localStorage.getItem("token") ? (
+          <Link className="nav-link" to="/add-new-article">
+            {" "}
+            Add Article{" "}
+          </Link>
+        ) : null}
+        {localStorage.getItem("token") ? (
           <Link className="nav-link" to="/articles">
             Articles
           </Link>
@@ -25,17 +31,18 @@ const Header = () => {
             Profile
           </Link>
         ) : (
-          <Link className="nav-link" to="/signup">
-            Sign Up
-          </Link>
+        <Link className="nav-link"  to="/signin">
+           Sign In
+        </Link>
+
         )}
         {localStorage.getItem("token") ? (
-          <Link className="nav-link" to="/" onClick={signOut}>
+          <Link className="nav-link" id="signout-btn" to="/" onClick={signOut}>
             Sign Out
           </Link>
         ) : (
-          <Link className="nav-link" id="login-btn" to="/signin">
-            Sign In
+          <Link className="nav-link" id="signup-btn" to="/signup">
+            Sign Up
           </Link>
         )}
       </nav>

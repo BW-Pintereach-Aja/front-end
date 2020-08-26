@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import thunk from 'redux-thunk'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import articlesReducer from './redux/reducers/articlesReducer'
+import thunk from 'redux-thunk'
+import { articlesReducer } from './redux/reducers/articlesReducer'
 import { userReducer } from './redux/reducers/userReducer'
+import { logger } from 'redux-logger'
 
 import App from './App'
 import './index.css'
@@ -15,7 +16,7 @@ const rootReducer = combineReducers({
 	userReducer
 })
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk, logger))
 
 ReactDOM.render(
 	<Provider store={store}>

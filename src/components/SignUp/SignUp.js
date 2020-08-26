@@ -9,26 +9,19 @@ const initialForm = {
           lastName: "",
           username: "",
           password: "",
+          confirmpassword: "",
           terms: true,
         }
 
 export default function SignUp() {
+
   const [formState, setFormState] = useState(initialForm);
 
   const [serverError, setServerError] = useState("");
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
-  const [errors, setErrors] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
-    password: "",
-    terms: "",
-  });
-
-  // temporary state used to display response from API. this is not a commonly used convention
-  const [post, setPost] = useState([]);
+  const [errors, setErrors] = useState(initialForm);
 
   const validateChange = (e) => {
     yup
@@ -54,10 +47,13 @@ export default function SignUp() {
     e.preventDefault();
     console.log("form submitted!");
     axios
-      .post("https://bw-pintereach-aja.herokuapp.com/api/auth/register", formState)
+      .post(
+        "https://bw-pintereach-aja.herokuapp.com/api/auth/register",
+        formState
+      )
       .then((res) => {
         console.log("success!", res.data);
-        localStorage.setItem('token', res.data.token)
+        localStorage.setItem("token", res.data.token);
         // setPost(res.data);
         setServerError(null);
         setFormState(initialForm);
@@ -83,9 +79,7 @@ export default function SignUp() {
   const formSchema = yup.object().shape({
     firstName: yup.string().required("Name is a required field"),
     lastName: yup.string().required("Name is a required field"),
-    username: yup
-      .string()
-      .required("Must include a username"),
+    username: yup.string().required("Must include a username"),
     password: yup
       .string()
       .required("Please create a password")
@@ -93,6 +87,11 @@ export default function SignUp() {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
         "Password does not meet criteria."
       ),
+    confirmpassword: yup
+    .string()
+    .required("Please confirm password")
+    .oneOf([yup.ref('password'), null], 'Passwords must match'
+    ),
     terms: yup.boolean().oneOf([true], "Please agree to Terms & Conditions"),
   });
 
@@ -105,7 +104,8 @@ export default function SignUp() {
   return (
     <form onSubmit={formSubmit}>
       {serverError ? <p className="error">{serverError}</p> : null}
-
+    <h1>Welcome to Pintereach!</h1>
+    <h3>Please register for an account.</h3>
       <label htmlFor="firstName">
         First Name
         <input
@@ -115,7 +115,9 @@ export default function SignUp() {
           value={formState.firstName}
           onChange={inputChange}
         />
-        {errors.firstName.length > 0 ? <p className="error">{errors.firstName}</p> : null}
+        {errors.firstName.length > 0 ? (
+          <p className="error">{errors.firstName}</p>
+        ) : null}
       </label>
       <label htmlFor="lastName">
         Last Name
@@ -126,10 +128,12 @@ export default function SignUp() {
           value={formState.lastName}
           onChange={inputChange}
         />
-        {errors.lastName.length > 0 ? <p className="error">{errors.lastName}</p> : null}
+        {errors.lastName.length > 0 ? (
+          <p className="error">{errors.lastName}</p>
+        ) : null}
       </label>
       <label htmlFor="username">
-        username
+        Username
         <input
           id="username"
           type="text"
@@ -155,6 +159,19 @@ export default function SignUp() {
           <p className="error">{errors.password}</p>
         ) : null}
       </label>
+      <label htmlFor="confirmpassword">
+        Confirm Password:
+        <input
+          type="password"
+          id="confirmpassword"
+          name="confirmpassword"
+          value={formState.confirmpassword}
+          onChange={inputChange}
+        />
+        {errors.confirmpassword.length > 0 ? (
+          <p className="error">{errors.confirmpassword}</p>
+        ) : null}
+      </label>
       <label htmlFor="terms" className="terms">
         <input
           type="checkbox"
@@ -168,8 +185,12 @@ export default function SignUp() {
           <p className="error">{errors.terms}</p>
         ) : null}
       </label>
-      <button disabled={buttonDisabled} type="submit" onClick={e=> formSubmit(e)}>
-        Submit
+      <button
+        disabled={buttonDisabled}
+        type="submit"
+        onClick={(e) => formSubmit(e)}
+      >
+        Create Account
       </button>
       {/* <pre>{JSON.stringify(post, null, 2)}</pre> */}
     </form>

@@ -24,10 +24,11 @@ const SignIn = () => {
     axios
       .post("https://bw-pintereach-aja.herokuapp.com/api/auth/login", signIn)
       .then((res) => {
-        console.log(res.data);
+        console.log("Login: ", res.data);
         window.localStorage.setItem("token", res.data.token);
+        window.localStorage.setItem("userID", res.data.id);
         history.push("/articles/");
-        window.location.reload(true)
+        window.location.reload(true);
       })
       .catch((err) => console.error("Could not sign in: ", err.message));
   };
@@ -36,6 +37,8 @@ const SignIn = () => {
     <>
       <h2>Welcome Back to Pintereach</h2>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="username">
+        Username:
         <input
           type="text"
           name="username"
@@ -43,6 +46,9 @@ const SignIn = () => {
           placeholder="Username..."
           onChange={handleChange}
         />
+        </label>
+        <label htmlForm="password">
+          Password:
         <input
           type="password"
           name="password"
@@ -50,6 +56,7 @@ const SignIn = () => {
           placeholder="Password..."
           onChange={handleChange}
         />
+        </label>
         <button>Sign In</button>
       </form>
     </>
