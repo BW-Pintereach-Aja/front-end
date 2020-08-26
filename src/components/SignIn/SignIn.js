@@ -24,8 +24,9 @@ const SignIn = () => {
     axios
       .post("https://bw-pintereach-aja.herokuapp.com/api/auth/login", signIn)
       .then((res) => {
-        console.log(res.data);
+        console.log("Login: ", res.data);
         window.localStorage.setItem("token", res.data.token);
+        window.localStorage.setItem("userID", res.data.id);
         history.push("/articles/");
         window.location.reload(true);
       })
