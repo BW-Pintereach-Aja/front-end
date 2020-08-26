@@ -35,6 +35,7 @@ const ArticleEditor = (props) => {
     <div className="new-article">
       <h2>Edit Your Article</h2>
       <form onSubmit={updateSingleArticle}>
+        <label>Title</label>
         <input
           type="text"
           name="articleTitle"
@@ -42,6 +43,7 @@ const ArticleEditor = (props) => {
           onChange={handleChange}
           placeholder="Title..."
         />
+        <label>Description</label>
         <input
           type="text"
           name="articleDesc"
@@ -49,6 +51,7 @@ const ArticleEditor = (props) => {
           onChange={handleChange}
           placeholder="Description..."
         />
+        <label>Category</label>
         <input
           type="text"
           name="category"
@@ -56,6 +59,7 @@ const ArticleEditor = (props) => {
           onChange={handleChange}
           placeholder="Category..."
         />
+        <label>Category</label>
         <input
           type="text"
           name="url"
@@ -63,7 +67,7 @@ const ArticleEditor = (props) => {
           onChange={handleChange}
           placeholder="URL..."
         />
-        <button>Add Article</button>
+        <button>Save gitArticle</button>
       </form>
     </div>
   );
