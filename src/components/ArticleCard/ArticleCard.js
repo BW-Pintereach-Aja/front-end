@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 
 import { deleteArticle, fetchSingleArticle } from "../../redux/actions/articlesActions";
 
-import ArticleEditor from "../ArticleCard/ArticleCard";
+import ArticleEditor from "../ArticleEditor/ArticleEditor";
 
 import "./ArticleCard.scss";
 
 const ArticlesCard = ({
   id,
   url,
-  title,
-  desc,
+  articleTitle,
+  articleDesc,
   category,
   aboutCategory,
   deleteArticle,
@@ -20,7 +20,6 @@ const ArticlesCard = ({
 }) => {
   return (
     <div className="card-body">
-      
         <h3>{articleTitle}</h3>
         <p>{articleDesc}</p>
         <p>{category}</p>

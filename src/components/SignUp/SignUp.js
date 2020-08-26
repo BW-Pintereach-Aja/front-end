@@ -16,6 +16,7 @@ const initialForm = {
         }
 
 export default function SignUp() {
+  const history = useHistory();
 
   const [formState, setFormState] = useState(initialForm);
 
