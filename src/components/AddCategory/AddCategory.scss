@@ -1,0 +1,38 @@
+form{
+    height: 300px;
+    border-radius: 4px;
+    padding: 8px;
+
+    h1 {
+        margin-bottom: 0;
+    }
+}
+
+input {
+    width: 275px;
+}
+
+.create-btn {
+    width: 150px;
+    align-self: flex-end;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        background-image: none;
+        background-color: #ffe97a;
+    }
+
+    &:disabled {
+        background-image: none;
+        background-color: white;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: rgba(0, 0, 0, 0.1);
+        cursor: not-allowed;
+      }
+}
+
+select {
+    width: 150px;
+    height: 24px;
+}

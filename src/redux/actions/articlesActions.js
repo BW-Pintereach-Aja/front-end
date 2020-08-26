@@ -16,12 +16,14 @@ export const ARTICLE_UPDATE_START = "ARTICLE_UPDATE_START";
 export const ARTICLE_UPDATE_SUCCESS = "ARTICLE_UPDATE_SUCCESS";
 export const ARTICLE_UPDATE_FAIL = "ARTICLE_UPDATE_FAIL";
 
+export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
+
 export const fetchArticles = () => (dispatch) => {
   dispatch({ type: FETCH_ARTICLES_START });
   axiosWithAuth()
     .get("/api/articles")
     .then((res) => {
-      console.log("Actions --> ", res.data);
       dispatch({ type: FETCH_ARTICLES_SUCCESS, payload: res.data });
     })
     .catch((err) =>
@@ -40,14 +42,19 @@ export const deleteArticle = (id) => (dispatch) => {
 };
 
 export const addNewArticle = (userId, newArticle) => (dispatch) => {
+  console.log("NEW ARTICLE ", newArticle);
   dispatch({ type: ADD_ARTICLE_START });
   axiosWithAuth()
     .post(`/api/articles/${userId}/user`, newArticle)
     .then((res) => {
       console.log("new article sent: ", res.data);
       dispatch({ type: ADD_ARTICLE_SUCCESS, payload: res.data });
+      window.location.reload();
     })
-    .catch((err) => dispatch({ type: ADD_ARTICLE_FAIL, payload: err.message }));
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: ADD_ARTICLE_FAIL, payload: err.message });
+    });
 };
 
 export const fetchSingleArticle = (id) => (dispatch) => {
@@ -73,3 +80,15 @@ export const updateSingleArticle = (id, article) => (dispatch) => {
     );
 };
 
+export const fetchCategories = () => (dispatch) => {
+  axiosWithAuth()
+    .get("/api/articles/categories")
+    .then((res) => {
+      console.log(res.data);
+
+      dispatch({ type: FETCH_CATEGORIES, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

@@ -20,6 +20,7 @@ const ArticlesCard = ({
 }) => {
   return (
     <div className="card-body">
+<<<<<<< HEAD
       <a href={url}>
         <h3>{title}</h3>
         <p>{desc}</p>
@@ -27,6 +28,17 @@ const ArticlesCard = ({
         <p>{aboutCategory}</p>
         {/* <h2>Params: {props.params}</h2> */}
       </a>
+=======
+      
+        <h3>{articleTitle}</h3>
+        <p>{articleDesc}</p>
+        <p>{category}</p>
+        <p>{aboutCategory}</p>
+        <select data-cy="moveCard" id="moveCard" name="moveCard">
+            <option>  Move to...</option>
+            {/* need to map categories here */}
+        </select>
+>>>>>>> feature/categories
       <div className="edit-delete-container">
         <Link
           to={`/article-update/${id}`}
@@ -35,7 +47,7 @@ const ArticlesCard = ({
         >
           Edit
         </Link>
-        <button
+        <button className="delete-btn"
           onClick={(e) => {
             e.stopPropagation();
             deleteArticle(id);
@@ -45,6 +57,16 @@ const ArticlesCard = ({
           Delete
         </button>
       </div>
+
+    <a href={url}>  
+      <div className="article-btn">
+      Go to article
+      </div>
+    </a>
+
+      {/* <Modali.Modal {...modal}>
+        <ArticleEditor articleID={articleID} toggleModal={toggleModal} />
+      </Modali.Modal> */}
     </div>
   );
 };
