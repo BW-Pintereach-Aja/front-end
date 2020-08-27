@@ -1,0 +1,35 @@
+.edit-article {
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+  padding: 26px;
+  margin: 8px auto;
+  border-top: 16px solid #fddb3a;
+  flex-direction: column;
+  background: #fff;
+  width: 20vw;
+  border-top: 16px solid #fddb3a;
+  border-radius: 4px;
+  height: 400px;
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+  }
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+select {
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  display: block;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  height: 50px;
+  margin: 20px auto;
+  padding: 10px;
+  transition: all 0.3s;
+  width: 100%;
+}

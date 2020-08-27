@@ -8,6 +8,8 @@ import {
 } from "../../redux/actions/articlesActions";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
+import "./ArticleUpdate.scss";
+
 const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
   const [editArticle, setEditArticle] = useState({
     articleID: id,
@@ -17,14 +19,16 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
     url: url,
   });
 
+  const articleID = props.match.params.id;
+
   useEffect(() => {
     // const id = props.match.params.id
-    const id = editArticle.articleID;
-    console.log("article id:", id);
+
+    console.log("article id:", articleID);
 
     fetchSingleArticle(editArticle.articleID);
     axiosWithAuth()
-      .get(`/api/articles/${id}`)
+      .get(`/api/articles/${articleID}`)
       .then((res) => {
         setEditArticle(res.data[0]);
         console.log("Single Article ---> ", props.articles);
@@ -50,8 +54,8 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
 
   return (
     <div className="new-article">
-      <h2>Edit Your Article</h2>
-      <form onSubmit={updateSingleArticle}>
+      <form onSubmit={updateSingleArticle(articleID, editArticle)}>
+        <h2>Edit Your Article</h2>
         <input
           type="text"
           name="title"
@@ -66,13 +70,6 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
           onChange={handleChange}
           placeholder="Description..."
         />
-        {/* <input
-          type="text"
-          name="category"
-          value={editArticle.categoryID}
-          onChange={handleChange}
-          placeholder="Category..."
-        /> */}
         <input
           type="text"
           name="url"
@@ -80,7 +77,7 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
           onChange={handleChange}
           placeholder="URL..."
         />
-        <button>Add Article</button>
+        <button>Update Article</button>
       </form>
     </div>
   );

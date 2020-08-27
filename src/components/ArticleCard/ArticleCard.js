@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 import { deleteArticle, fetchSingleArticle } from "../../redux/actions/articlesActions";
 
-import ArticleEditor from "../ArticleEditor/ArticleEditor";
-
 import "./ArticleCard.scss";
 
 const ArticlesCard = ({
@@ -16,7 +14,6 @@ const ArticlesCard = ({
   category,
   aboutCategory,
   deleteArticle,
-  ...props
 }) => {
   return (
     <div className="card-body">
@@ -30,7 +27,7 @@ const ArticlesCard = ({
         </select>
       <div className="edit-delete-container">
         <Link
-          to="/article-update/:id"
+          to={`/article-update/${id}`}
           className="edit-btn"
           onClick={(e) => fetchSingleArticle(id)}
         >
@@ -52,10 +49,6 @@ const ArticlesCard = ({
       Go to article
       </div>
     </a>
-
-      {/* <Modali.Modal {...modal}>
-        <ArticleEditor articleID={articleID} toggleModal={toggleModal} />
-      </Modali.Modal> */}
     </div>
   );
 };

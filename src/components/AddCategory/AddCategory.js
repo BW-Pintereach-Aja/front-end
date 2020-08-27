@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import axios from 'axios'
 
 import './AddCategory.scss'
-import { createTempVariable } from 'typescript'
+// import { createTempVariable } from 'typescript'
 
 const initialForm = {
 	name: '',
