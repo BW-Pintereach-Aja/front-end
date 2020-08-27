@@ -33,12 +33,14 @@ export const fetchArticles = () => (dispatch) => {
 
 export const deleteArticle = (id) => (dispatch) => {
   // dispatch({ type: DELETE_ARTICLE });
-  axiosWithAuth()
-    .delete(`/api/articles/${id}/remove-article`)
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => console.log(err.message));
+  if (window.confirm("Delete this article?")) {
+    axiosWithAuth()
+      .delete(`/api/articles/${id}/remove-article`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }
 };
 
 export const addNewArticle = (userId, newArticle) => (dispatch) => {

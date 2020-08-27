@@ -81,6 +81,23 @@ export const articlesReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case ARTICLE_UPDATE_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: "",
+      };
+    case ARTICLE_UPDATE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        error: "",
+      };
+    case ARTICLE_UPDATE_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return state;
   }
