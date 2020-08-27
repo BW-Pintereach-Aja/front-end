@@ -11,6 +11,7 @@ import SignUp from "./components/SignUp/SignUp";
 import Articles from "./components/Articles/Articles";
 import Profile from "./components/Profile/Profile";
 import NewArticle from "./components/NewArticle/NewArticle";
+// import ArticleUpdate from "./components/ArticleUpdate/ArticleUpdate";
 import ArticleEditor from "./components/ArticleEditor/ArticleEditor";
 
 function App() {
