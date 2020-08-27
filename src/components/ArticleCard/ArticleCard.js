@@ -53,8 +53,8 @@ const ArticlesCard = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  // article: state.articlesReducer.data
-};
+// const mapStateToProps = (state) => {
+//   // article: state.articlesReducer.data
+// };
 
-export default connect(mapStateToProps, { deleteArticle, fetchSingleArticle })(ArticlesCard);
+export default connect(null, { deleteArticle, fetchSingleArticle })(ArticlesCard);

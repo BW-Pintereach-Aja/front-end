@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
-// import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import {
   fetchSingleArticle,
   updateSingleArticle,
+  ARTICLE_UPDATE_SUCCESS,
 } from "../../redux/actions/articlesActions";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
 import "./ArticleEditor.scss";
 
 const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
+  const history = useHistory();
+
   const [editArticle, setEditArticle] = useState({
-    articleID: id,
     title: title,
     desc: desc,
     categoryID: 1,
@@ -36,10 +38,6 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
 
   console.log("editing article here:", editArticle);
 
-  useEffect(() => {
-    fetchSingleArticle(id);
-  }, []);
-
   const handleChange = (e) => {
     setEditArticle({
       ...editArticle,
@@ -47,9 +45,15 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
     });
   };
 
+  const submitUpdate = (e) => {
+    e.preventDefault();
+    props.updateSingleArticle(articleID, editArticle);
+    history.push("/articles/");
+  };
+
   return (
     <div className="new-article">
-      <form onSubmit={updateSingleArticle(articleID, editArticle)}>
+      <form onSubmit={submitUpdate}>
         <h2>Edit Your Article</h2>
         <input
           type="text"
@@ -78,12 +82,19 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
   );
 };
 
-const mapDispatchToProps = () => {
+// const mapDispatchToProps = (dispatch) => {
+// 	console.log("*****************")
+//   return {
+
+//     fetchSingleArticle,
+//     updateSingleArticle: () => dispatch({ type: ARTICLE_UPDATE_SUCCESS }),
+//   };
+// };
+
+const mapStateToProps = (state) => {
   return {
-    fetchSingleArticle,
+    ...state,
   };
 };
 
-export default connect(null, {
-  mapDispatchToProps,
-})(ArticleUpdate);
+export default connect(mapStateToProps, { updateSingleArticle })(ArticleUpdate);

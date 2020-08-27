@@ -6,14 +6,14 @@ import "./Header.scss";
 const Header = () => {
   const signOut = () => {
     localStorage.removeItem("token");
-    window.location.reload("/");
+    window.location.reload("/articles/");
   };
 
   return (
     <div className="header">
-      <Link className="logo" to="/">
+      <a className="logo" href="https://pintereach-marketing2020.netlify.app/index.html">
         Pintereach
-      </Link>
+      </a>
       <nav className="nav-links">
         {localStorage.getItem("token") ? (
           <Link className="nav-link" to="/add-new-article">
@@ -26,7 +26,7 @@ const Header = () => {
             Articles
           </Link>
         ) : null}
-        {localStorage.getItem("token") ? (
+        {/* {localStorage.getItem("token") ? (
           <Link className="nav-link" to="/profile">
             Profile
           </Link>
@@ -35,7 +35,7 @@ const Header = () => {
            Sign In
         </Link>
 
-        )}
+        )} */}
         {localStorage.getItem("token") ? (
           <Link className="nav-link" id="signout-btn" to="/" onClick={signOut}>
             Sign Out

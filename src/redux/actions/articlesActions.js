@@ -71,12 +71,13 @@ export const fetchSingleArticle = (id) => (dispatch) => {
 };
 
 export const updateSingleArticle = (id, article) => (dispatch) => {
+  console.log("update action", id, article);
   dispatch({ type: ARTICLE_UPDATE_START });
   axiosWithAuth()
     .put(`/api/articles/${id}`, article)
     .then((res) => {
-      console.log(res.data);
-      dispatch({ type: ARTICLE_UPDATE_SUCCESS });
+      console.log("ridiculous string:", res.data);
+      dispatch({ type: ARTICLE_UPDATE_SUCCESS, payload: res.data });
     })
     .catch((err) =>
       dispatch({ type: ARTICLE_UPDATE_FAIL, payload: err.message })
