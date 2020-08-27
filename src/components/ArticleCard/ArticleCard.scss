@@ -3,6 +3,7 @@
     flex-direction: column;
     background: #FFF;
     width: 20vw;
+    height: auto;
     margin: 8px;
     border-top: 16px solid #fddb3a;
     border-radius: 4px;
@@ -18,7 +19,7 @@
         width: 72px;
         color: #000;
         margin: 26px 12px 8px 12px;
-        margin-top: 26px;
+        margin-top: 16px;
         padding: 8px 8px;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
         border-radius: 4px;
@@ -47,8 +48,19 @@
         text-decoration: none;
     }
 
-    h3 {
+    .article-title {
         color: black;
+        font-size: 1.6rem;
+        margin-bottom: 4px;
+    }
+
+    .article-desc {
+        margin-top: 0;
         font-size: 1.2rem;
+    }
+
+    .category {
+        font-size: 1.1rem;
+        align-self: flex-start;
     }
 }

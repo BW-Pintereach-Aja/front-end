@@ -20,10 +20,10 @@ const ArticlesCard = ({
 }) => {
   return (
     <div className="card-body">
-        <h3>{articleTitle}</h3>
-        <p>{articleDesc}</p>
-        <p>{category}</p>
-        <p>{aboutCategory}</p>
+        <h3 className="article-title">{articleTitle}</h3>
+        <p className="article-desc">{articleDesc}</p>
+        <label>Category:</label>
+        <p className="category">{category}</p>
         <select data-cy="moveCard" id="moveCard" name="moveCard">
             <option>  Move to...</option>
             {/* need to map categories here */}
