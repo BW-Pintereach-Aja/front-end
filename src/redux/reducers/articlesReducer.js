@@ -79,11 +79,28 @@ export const articlesReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
-    case ARTICLE_UPDATE_SUCCESS:
-      return {
-        ...state,
-        data: action.payload
-      }
+//     case ARTICLE_UPDATE_START:
+//       return {
+//         ...state,
+//         isFetching: true,
+//         error: "",
+//       };
+//     case ARTICLE_UPDATE_SUCCESS:
+//       return {
+//         ...state,   
+//       data: [
+//         ...state.data.filter(article => console.log("article inside reducer", article.id) === action.payload.id)
+//       ],
+//         // data: [...state.data, action.payload],
+//         isFetching: false,
+//         error: "",
+//       };
+//     case ARTICLE_UPDATE_FAIL:
+//       return {
+//         ...state,
+//         error: action.payload,
+//       };
+// >>>>>>> master
     default:
       return state;
   }

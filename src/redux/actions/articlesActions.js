@@ -35,12 +35,14 @@ export const fetchArticles = () => (dispatch) => {
 
 export const deleteArticle = (id) => (dispatch) => {
   // dispatch({ type: DELETE_ARTICLE });
-  axiosWithAuth()
-    .delete(`/api/articles/${id}/remove-article`)
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => console.log(err.message));
+  if (window.confirm("Delete this article?")) {
+    axiosWithAuth()
+      .delete(`/api/articles/${id}/remove-article`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }
 };
 
 export const addNewArticle = (userId, newArticle) => (dispatch) => {
@@ -72,11 +74,12 @@ export const fetchSingleArticle = (id) => (dispatch) => {
 
 export const updateSingleArticle = (id, article) => (dispatch) => {
  
+  console.log("update action", id, article);
+
   dispatch({ type: ARTICLE_UPDATE_START });
   axiosWithAuth()
     .put(`/api/articles/${id}`, article)
     .then((res) => {
-      
       axiosWithAuth()
       .get(`/api/articles`)
       .then(response => {
@@ -85,7 +88,6 @@ export const updateSingleArticle = (id, article) => (dispatch) => {
       .catch(err => {
         console.log(err)
       })
-      
     })
     .catch((err) =>
       dispatch({ type: ARTICLE_UPDATE_FAIL, payload: err.message })

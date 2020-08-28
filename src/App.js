@@ -11,15 +11,16 @@ import SignUp from "./components/SignUp/SignUp";
 import Articles from "./components/Articles/Articles";
 import Profile from "./components/Profile/Profile";
 import NewArticle from "./components/NewArticle/NewArticle";
+// import ArticleUpdate from "./components/ArticleUpdate/ArticleUpdate";
 import ArticleEditor from "./components/ArticleEditor/ArticleEditor";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Route exact path="/">
+      {/* <Route exact path="/">
         <Home />
-      </Route>
+      </Route> */}
       <Switch>
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />

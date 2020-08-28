@@ -1,29 +1,42 @@
 import React, { useState, useEffect } from "react";
-// import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import {
   fetchSingleArticle,
   updateSingleArticle,
+  ARTICLE_UPDATE_SUCCESS,
 } from "../../redux/actions/articlesActions";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 
 import "./ArticleEditor.scss";
 
-const ArticleEditor = (props) => {
+const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
+  const history = useHistory();
+
   const [editArticle, setEditArticle] = useState({
-    title: props.articleTitle,
-    desc: props.articleDesc,
-    categoryID: props.category,
-    url: props.url,
+    title: title,
+    desc: desc,
+    categoryID: 1,
+    url: url,
   });
 
-  console.log("editing article here:", editArticle);
-
-  // const history = useHistory();
+  const articleID = props.match.params.id;
 
   useEffect(() => {
-    fetchSingleArticle(props.article.id);
+    console.log("article id:", articleID);
+
+    fetchSingleArticle(editArticle.articleID);
+    axiosWithAuth()
+      .get(`/api/articles/${articleID}`)
+      .then((res) => {
+        setEditArticle(res.data[0]);
+        console.log("Single Article ---> ", props.articles);
+      })
+      .catch((err) => console.error(err.response));
   }, []);
+
+  console.log("editing article here:", editArticle);
 
   const handleChange = (e) => {
     setEditArticle({
@@ -32,52 +45,56 @@ const ArticleEditor = (props) => {
     });
   };
 
+  const submitUpdate = (e) => {
+    e.preventDefault();
+    props.updateSingleArticle(articleID, editArticle);
+    history.push("/articles/");
+  };
+
   return (
-    <div className="edit-article">
-      <h2>Edit Your Article</h2>
-      <form onSubmit={updateSingleArticle}>
+    <div className="new-article">
+      <form onSubmit={submitUpdate}>
+        <h2>Edit Your Article</h2>
         <input
           type="text"
-          name="articleTitle"
-          value={props.articleTitle}
+          name="title"
+          value={editArticle.title}
           onChange={handleChange}
           placeholder="Title..."
         />
         <input
           type="text"
-          name="articleDesc"
-          value={props.articleDesc}
+          name="desc"
+          value={editArticle.desc}
           onChange={handleChange}
           placeholder="Description..."
         />
         <input
           type="text"
-          name="category"
-          value={props.category}
-          onChange={handleChange}
-          placeholder="Category..."
-        />
-        <input
-          type="text"
           name="url"
-          value={props.url}
+          value={editArticle.url}
           onChange={handleChange}
           placeholder="URL..."
         />
-
-        <button>Add Article</button>
+        <button>Update Article</button>
       </form>
     </div>
   );
 };
 
+// const mapDispatchToProps = (dispatch) => {
+// 	console.log("*****************")
+//   return {
+
+//     fetchSingleArticle,
+//     updateSingleArticle: () => dispatch({ type: ARTICLE_UPDATE_SUCCESS }),
+//   };
+// };
+
 const mapStateToProps = (state) => {
   return {
-    article: state.articlesReducer.data,
+    ...state,
   };
 };
 
-export default connect(mapStateToProps, {
-  fetchSingleArticle,
-  updateSingleArticle,
-})(ArticleEditor);
+export default connect(mapStateToProps, { updateSingleArticle })(ArticleUpdate);

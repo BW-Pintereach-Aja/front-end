@@ -24,7 +24,7 @@ const Articles = (props) => {
   return (
     <>
       <div className="category">
-        <Category />
+        <Category categories={props.category} />
       </div>
       <div className="card-list">
         {props.articles.map((article) => {
@@ -52,6 +52,7 @@ const mapStateToProps = (state) => {
   return {
     articles: state.articlesReducer.data,
     isFetching: state.articlesReducer.isFetching,
+    category: state.articlesReducer.categories,
   };
 };
 export default connect(mapStateToProps, { fetchArticles, fetchCategories})(Articles);
