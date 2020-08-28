@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
-import axios from 'axios'
+import axiosWithAuth from '../../utils/axiosWithAuth'
 
 import './AddCategory.scss'
 // import { createTempVariable } from 'typescript'
@@ -35,11 +35,11 @@ const AddCategory = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		axios
+		axiosWithAuth()
 			.post('https://bw-pintereach-aja.herokuapp.com/api/articles/new-category', createCategory)
 			.then((res) => {
 				console.log(res.data)
-				localStorage.setItem('token', res.data.token)
+				// localStorage.setItem('token', res.data.token)
 				setPost(res.data)
 				// history.push("/articles/");
 				// window.location.reload(true)
@@ -102,11 +102,28 @@ const AddCategory = () => {
 			<h1>Create a Category</h1>
 			<p>Organize your articles into cateogries.</p>
 			<label htmlFor="name">Category name:</label>
-			<input className="category-input" id="name" type="text" name="name" value={createCategory.name} onChange={inputChange} />
+			<input 
+				className="category-input" 
+				id="name" 
+				type="text" 
+				name="name" 
+				value={createCategory.name} 
+				onChange={inputChange} 
+			/>
 			<label htmlFor="desc">Description:</label>
-			<input className="category-input" id="desc" type="text" name="desc" value={createCategory.desc} onChange={inputChange} />
+			<input 
+				className="category-input" 
+				id="desc" 
+				type="text" 
+				name="desc" 
+				value={createCategory.desc} 
+				onChange={inputChange} 
+			/>
 
-			<button className="create-btn" disabled={buttonDisabled} type="submit">
+			<button 
+				className="create-btn" 
+				disabled={buttonDisabled} 
+				type="submit">
 				Create Category
 			</button>
 			{/* <pre>{JSON.stringify(post, null, 2)}</pre>        */}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchArticles } from "../../redux/actions/articlesActions";
+import { fetchArticles, fetchCategories } from "../../redux/actions/articlesActions";
 
 import "./Articles.scss";
 
@@ -13,8 +13,9 @@ const Articles = (props) => {
 
   useEffect(() => {
     props.fetchArticles();
-  }, []);
-
+    props.fetchCategories();
+   }, [fetchArticles, fetchCategories])
+ 
   // if (props.isFetching) {
   //   return <h2 className="loading">*** Loading Articles ***</h2>;
   // }
@@ -24,7 +25,7 @@ const Articles = (props) => {
     <div className="dashboard-display">
       <div className="dashboard-header">
         <h1 className="articles-title">All Articles:</h1>
-        <Category />
+        <Category categories={props.category}/>
       </div>
       <div className="card-list">
         {props.articles.map((article) => {
@@ -52,6 +53,7 @@ const mapStateToProps = (state) => {
   return {
     articles: state.articlesReducer.data,
     isFetching: state.articlesReducer.isFetching,
+    category: state.articlesReducer.categories,
   };
 };
-export default connect(mapStateToProps, { fetchArticles })(Articles);
+export default connect(mapStateToProps, { fetchArticles, fetchCategories})(Articles);
