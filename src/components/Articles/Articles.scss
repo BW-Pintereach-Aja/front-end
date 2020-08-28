@@ -1,7 +1,19 @@
+.dashboard-header{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+
+    .articles-title{
+        margin-left: 8px;
+    }
+}
 .card-list {
+    width: 80%;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
 .loading {

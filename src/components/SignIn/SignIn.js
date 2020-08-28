@@ -34,12 +34,15 @@ const SignIn = () => {
   };
 
   return (
-    <>
-      <h2>Welcome Back to Pintereach</h2>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+    <div className="signin-container">
+      <h1 className="welcome">Welcome Back to Pintereach</h1>
+      <h3 className="signin">Please sign in.</h3>
+      
         <label htmlFor="username">
         Username:
         <input
+          className="signin-input"
           type="text"
           name="username"
           value={signIn.username}
@@ -50,6 +53,7 @@ const SignIn = () => {
         <label htmlForm="password">
           Password:
         <input
+          className="signin-input"
           type="password"
           name="password"
           value={signIn.password}
@@ -57,9 +61,9 @@ const SignIn = () => {
           onChange={handleChange}
         />
         </label>
-        <button>Sign In</button>
-      </form>
-    </>
+        <button className="signin-btn">Sign In</button>
+    </div>
+    </form>
   );
 };
 

@@ -104,13 +104,15 @@ export default function SignUp() {
   }, [formState]);
 
   return (
-    <form onSubmit={formSubmit}>
+    <form  className="signup-form" id="signup-container" onSubmit={formSubmit}>
       {serverError ? <p className="error">{serverError}</p> : null}
-    <h1>Welcome to Pintereach!</h1>
-    <h3>Please register for an account.</h3>
+    
+    <h1 className="welcometitle">Welcome to Pintereach!</h1>
+    <h3 className="welcometitle">Please register for an account.</h3>
       <label htmlFor="firstName">
         First Name
         <input
+          className="signup-input"
           id="firstName"
           type="text"
           name="firstName"
@@ -121,9 +123,10 @@ export default function SignUp() {
           <p className="error">{errors.firstName}</p>
         ) : null}
       </label>
-      <label htmlFor="lastName">
+      <label  htmlFor="lastName">
         Last Name
         <input
+          className="signup-input"
           id="lastName"
           type="text"
           name="lastName"
@@ -137,6 +140,7 @@ export default function SignUp() {
       <label htmlFor="username">
         Username
         <input
+          className="signup-input"
           id="username"
           type="text"
           name="username"
@@ -151,6 +155,7 @@ export default function SignUp() {
       <label htmlFor="password">
         Password:
         <input
+          className="signup-input"
           type="password"
           id="password"
           name="password"
@@ -164,6 +169,7 @@ export default function SignUp() {
       <label htmlFor="confirmpassword">
         Confirm Password:
         <input
+          className="signup-input"
           type="password"
           id="confirmpassword"
           name="confirmpassword"
@@ -176,6 +182,7 @@ export default function SignUp() {
       </label>
       <label htmlFor="terms" className="terms">
         <input
+          className="signup-input"
           type="checkbox"
           id="terms"
           name="terms"
@@ -187,7 +194,7 @@ export default function SignUp() {
           <p className="error">{errors.terms}</p>
         ) : null}
       </label>
-      <button
+      <button className="signup-btn"
         disabled={buttonDisabled}
         type="submit"
         onClick={(e) => formSubmit(e)}

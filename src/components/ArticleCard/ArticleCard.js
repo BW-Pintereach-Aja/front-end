@@ -20,14 +20,19 @@ const ArticlesCard = ({
 }) => {
   return (
     <div className="card-body">
+        <select data-cy="moveCard" id="moveCard" name="moveCard">
+            <option>  Move to...</option>
+            {/* need to map categories here */}
+        </select>      
         <h3 className="article-title">{articleTitle}</h3>
         <p className="article-desc">{articleDesc}</p>
         <label>Category:</label>
         <p className="category">{category}</p>
-        <select data-cy="moveCard" id="moveCard" name="moveCard">
-            <option>  Move to...</option>
-            {/* need to map categories here */}
-        </select>
+        <a href={url}>  
+          <div className="article-btn">
+          Go to article
+          </div>
+        </a>
       <div className="edit-delete-container">
         <Link
           to="/article-update/:id"
@@ -46,16 +51,6 @@ const ArticlesCard = ({
           Delete
         </button>
       </div>
-
-    <a href={url}>  
-      <div className="article-btn">
-      Go to article
-      </div>
-    </a>
-
-      {/* <Modali.Modal {...modal}>
-        <ArticleEditor articleID={articleID} toggleModal={toggleModal} />
-      </Modali.Modal> */}
     </div>
   );
 };

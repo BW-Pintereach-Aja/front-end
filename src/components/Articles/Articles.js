@@ -21,8 +21,9 @@ const Articles = (props) => {
 
   console.log("ARTICLES", props.articles);
   return (
-    <>
-      <div className="category">
+    <div className="dashboard-display">
+      <div className="dashboard-header">
+        <h1 className="articles-title">All Articles:</h1>
         <Category />
       </div>
       <div className="card-list">
@@ -42,8 +43,8 @@ const Articles = (props) => {
             />
           );
         })}
-      </div>
-    </>
+      </div> 
+    </div>
   );
 };
 

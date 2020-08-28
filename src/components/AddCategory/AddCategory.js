@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import axios from 'axios'
 
 import './AddCategory.scss'
-import { createTempVariable } from 'typescript'
+// import { createTempVariable } from 'typescript'
 
 const initialForm = {
 	name: '',
@@ -98,13 +98,13 @@ const AddCategory = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form className="category-container" onSubmit={handleSubmit}>
 			<h1>Create a Category</h1>
 			<p>Organize your articles into cateogries.</p>
 			<label htmlFor="name">Category name:</label>
-			<input id="name" type="text" name="name" value={createCategory.name} onChange={inputChange} />
+			<input className="category-input" id="name" type="text" name="name" value={createCategory.name} onChange={inputChange} />
 			<label htmlFor="desc">Description:</label>
-			<input id="desc" type="text" name="desc" value={createCategory.desc} onChange={inputChange} />
+			<input className="category-input" id="desc" type="text" name="desc" value={createCategory.desc} onChange={inputChange} />
 
 			<button className="create-btn" disabled={buttonDisabled} type="submit">
 				Create Category

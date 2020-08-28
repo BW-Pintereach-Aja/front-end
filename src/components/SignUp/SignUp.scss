@@ -1,24 +1,29 @@
-form {
+#signup-container{
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-width: 300px;
+  align-items: center;
+  border-radius: 4px;
+  width: 30%;
   margin: 0 auto;
+  margin-top: 24px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+  padding-top: 16px;
 }
 
 label {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 10px 0 0 0;
   font-size: 1.4rem;
 }
+.welcometitle{
+  text-align: center;
+}
 
-input {
-  width: 100%;
+.signup-input {
+  width: 300px;
   margin: 0;
   display: block;
-  width: 100%;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 10px;
@@ -47,30 +52,34 @@ input:placeholder {
   color: #a8b2b2;
 }
 
-button {
-  margin-top: 24px;
+.signup-btn{
+  margin-top: 8px;
   color: #41444b;
   background: #fddb3a;
   font-weight: 700;
   padding: 12px 20px;
-  margin-left: 12px;
+  width: 80%;
   border: none;
   border-radius: 4px;
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+  margin-bottom: 24px;
+
+  &:hover{
+    background-image: none;
+    background: #ffe97a;
+    }
+    
+  &:disabled {
+    background-image: none;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.1);
+    cursor: not-allowed;
+  }
+
 }
 
-button:hover{
-background-image: none;
-background: #ffe97a;
-}
 
-button:disabled {
-  background-image: none;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: rgba(0, 0, 0, 0.1);
-  cursor: not-allowed;
-}
 
 .error {
   font-size: 1.2rem;
@@ -81,10 +90,10 @@ button:disabled {
 .terms {
   display: inline-block;
   align-self: self-start;
+  margin: 16px 0 16px 50px;
 }
 
 .terms input {
-  width: 15px;
+  width: 16px;
   display: inline-block;
-  margin-right: 5px;
 }
