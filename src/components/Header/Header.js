@@ -11,7 +11,10 @@ const Header = () => {
 
   return (
     <div className="header">
-      <a className="logo" href="https://pintereach-marketing2020.netlify.app/index.html">
+      <a
+        className="logo"
+        href="https://pintereach-marketing2020.netlify.app/index.html"
+      >
         Pintereach
       </a>
       <nav className="nav-links">
@@ -26,14 +29,16 @@ const Header = () => {
             Articles
           </Link>
         ) : null}
-        <Link className="nav-link"  to="/signin">
-           Sign In
-        </Link>
         {localStorage.getItem("token") ? (
           <Link className="nav-link" id="signout-btn" to="/" onClick={signOut}>
             Sign Out
           </Link>
         ) : (
+          <Link className="nav-link" to="/signin">
+            Sign In
+          </Link>
+        )}
+        {localStorage.getItem("token") ? null : (
           <Link className="nav-link" id="signup-btn" to="/signup">
             Sign Up
           </Link>
