@@ -26,16 +26,9 @@ const Header = () => {
             Articles
           </Link>
         ) : null}
-        {/* {localStorage.getItem("token") ? (
-          <Link className="nav-link" to="/profile">
-            Profile
-          </Link>
-        ) : (
         <Link className="nav-link"  to="/signin">
            Sign In
         </Link>
-
-        )} */}
         {localStorage.getItem("token") ? (
           <Link className="nav-link" id="signout-btn" to="/" onClick={signOut}>
             Sign Out
