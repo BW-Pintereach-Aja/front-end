@@ -11,7 +11,10 @@ const Header = () => {
 
   return (
     <div className="header">
-      <a className="logo" href="https://pintereach-marketing2020.netlify.app/index.html">
+      <a
+        className="logo"
+        href="https://pintereach-marketing2020.netlify.app/index.html"
+      >
         Pintereach
       </a>
       <nav className="nav-links">
