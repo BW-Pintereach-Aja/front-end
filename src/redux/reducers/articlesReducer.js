@@ -9,9 +9,7 @@ import {
   ADD_ARTICLE_START,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
-  ARTICLE_UPDATE_START,
   ARTICLE_UPDATE_SUCCESS,
-  ARTICLE_UPDATE_FAIL,
 } from "../actions/articlesActions";
 
 const initialState = {
@@ -81,6 +79,11 @@ export const articlesReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case ARTICLE_UPDATE_SUCCESS:
+      return {
+        ...state,
+        data: action.payload
+      }
     default:
       return state;
   }

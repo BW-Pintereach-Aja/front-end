@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { deleteArticle, fetchSingleArticle, fetchCategories } from "../../redux/actions/articlesActions";
+import { deleteArticle, fetchSingleArticle, fetchCategories, updateSingleArticle} from "../../redux/actions/articlesActions";
 
 import "./ArticleCard.scss";
+
+
 
 const ArticlesCard = ({
   id,
@@ -14,16 +16,41 @@ const ArticlesCard = ({
   category,
   aboutCategory,
   deleteArticle,
-  categories
+  categories,
+  updateSingleArticle,
 }) => {
+
+  const handleChange = e => {
+  
+    const catID = categories.filter(c => c.name.toLowerCase() === e.target.value.toLowerCase());
+    const newArticle = {
+      url,
+      title: articleTitle,
+      desc: articleDesc,
+      categoryID: catID[0].id,
+      articleID: id
+    }
+    updateSingleArticle(id, newArticle);
+    console.log(categories)
+  }
+
+
+
   return (
     <div className="card-body">
         <h3>Title: {articleTitle}</h3>
         <p>Description: {articleDesc}</p>
         <p>Category: {category}</p>
         <p>About: {aboutCategory}</p>
-        <select data-cy="moveCard" id="moveCard" name="moveCard">
+        <select onChange={handleChange}
+          data-cy="moveCard" id="moveCard" name="moveCard">
             <option>  Change Category to...</option>
+            {categories.map(c => {
+    return (
+       <option key={c.id}>{c.name}</option>
+        )
+ })}
+
 
         </select>
       <div className="edit-delete-container">
@@ -56,6 +83,9 @@ const ArticlesCard = ({
 
 const mapStateToProps = (state) => {
   // article: state.articlesReducer.data
+  return {
+    categories: state.articlesReducer.categories
+  }
 };
 
-export default connect(mapStateToProps, { deleteArticle, fetchSingleArticle, fetchCategories })(ArticlesCard);
+export default connect(mapStateToProps, { deleteArticle, fetchSingleArticle, fetchCategories, updateSingleArticle})(ArticlesCard);

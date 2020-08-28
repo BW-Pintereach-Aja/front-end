@@ -19,6 +19,8 @@ export const ARTICLE_UPDATE_FAIL = "ARTICLE_UPDATE_FAIL";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 
+
+
 export const fetchArticles = () => (dispatch) => {
   dispatch({ type: FETCH_ARTICLES_START });
   axiosWithAuth()
@@ -69,15 +71,25 @@ export const fetchSingleArticle = (id) => (dispatch) => {
 };
 
 export const updateSingleArticle = (id, article) => (dispatch) => {
+ 
   dispatch({ type: ARTICLE_UPDATE_START });
   axiosWithAuth()
     .put(`/api/articles/${id}`, article)
     .then((res) => {
-      console.log(res.data);
-      dispatch({ type: ARTICLE_UPDATE_SUCCESS });
+      
+      axiosWithAuth()
+      .get(`/api/articles`)
+      .then(response => {
+        dispatch({ type: ARTICLE_UPDATE_SUCCESS, payload: response.data});
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      
     })
     .catch((err) =>
       dispatch({ type: ARTICLE_UPDATE_FAIL, payload: err.message })
+    
     );
 };
 
