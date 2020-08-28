@@ -50,7 +50,7 @@ export default function SignUp() {
     e.preventDefault();
     console.log("form submitted!");
     axios
-      .post("/api/auth/register", formState)
+      .post("https://bw-pintereach-aja.herokuapp.com/api/auth/register", formState)
       .then((res) => {
         console.log("success!", res.data);
         // setPost(res.data);
