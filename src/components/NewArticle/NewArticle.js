@@ -40,31 +40,39 @@ const NewArticle = (props) => {
   };
 
   return (
-    <div className="new-article">
-      <h2>Add New Article</h2>
+    
       <form onSubmit={(e) => handleSubmit(e)}>
+        <div className="new-article">
+        <h2 className="art-title">Add New Article</h2>
+        <label>Title:
         <input
+          className="new-input"
           type="text"
           name="title"
           value={newArticle.title}
           onChange={handleChange}
           placeholder="Title..."
-        />
+        /></label>
+        <label>Description:
         <input
+          className="new-input"
           type="text"
           name="desc"
           value={newArticle.desc}
           onChange={handleChange}
           placeholder="Description..."
-        />
+        /></label>
+        <label>URL:
         <input
+          className="new-input"
           type="text"
           name="url"
           value={newArticle.url}
           onChange={handleChange}
           placeholder="URL..."
-        />
+        /></label>
         <select
+          className="categoryID"
           name="categoryID"
           value={newArticle.categoryID}
           onChange={handleChange}
@@ -76,9 +84,10 @@ const NewArticle = (props) => {
             <option value={category.id}>{category.name}</option>
           ))}
         </select>
-        <button type="submit">Add Article</button>
+        <button className="add-btn" type="submit">Add Article</button>
+      </div> 
       </form>
-    </div>
+   
   );
 };
 

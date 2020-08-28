@@ -98,15 +98,32 @@ const AddCategory = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form className="category-container" onSubmit={handleSubmit}>
 			<h1>Create a Category</h1>
 			<p>Organize your articles into cateogries.</p>
 			<label htmlFor="name">Category name:</label>
-			<input id="name" type="text" name="name" value={createCategory.name} onChange={inputChange} />
+			<input 
+				className="category-input" 
+				id="name" 
+				type="text" 
+				name="name" 
+				value={createCategory.name} 
+				onChange={inputChange} 
+			/>
 			<label htmlFor="desc">Description:</label>
-			<input id="desc" type="text" name="desc" value={createCategory.desc} onChange={inputChange} />
+			<input 
+				className="category-input" 
+				id="desc" 
+				type="text" 
+				name="desc" 
+				value={createCategory.desc} 
+				onChange={inputChange} 
+			/>
 
-			<button className="create-btn" disabled={buttonDisabled} type="submit">
+			<button 
+				className="create-btn" 
+				disabled={buttonDisabled} 
+				type="submit">
 				Create Category
 			</button>
 			{/* <pre>{JSON.stringify(post, null, 2)}</pre>        */}

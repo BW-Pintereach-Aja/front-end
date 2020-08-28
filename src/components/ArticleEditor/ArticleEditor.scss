@@ -1,14 +1,20 @@
 .edit-article {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
   padding: 26px;
   margin: 8px auto;
   border-top: 16px solid #fddb3a;
   flex-direction: column;
   background: #fff;
-  width: 20vw;
+  width: 30%;
   border-top: 16px solid #fddb3a;
   border-radius: 4px;
-  height: 400px;
+  height: auto;
+  padding: 0 16px;
 
   h2 {
     text-align: center;
@@ -17,7 +23,7 @@
 }
 
 input {
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 select {
@@ -32,4 +38,33 @@ select {
   padding: 10px;
   transition: all 0.3s;
   width: 100%;
+}
+
+.edit-input{
+  width: 275px;
+  display: block;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  transition: all 0.3s;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  background-color: white;
+}
+
+.edit-btn {
+  width: 80%;
+  align-self: center;
+  margin: 24px 0 16px 0;
+  color: #41444b;
+  background: #fddb3a;
+  font-weight: 700;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  
+
+  &:hover {
+     background-color: #ffe97a;
+  }
 }

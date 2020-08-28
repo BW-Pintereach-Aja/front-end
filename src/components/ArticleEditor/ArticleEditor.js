@@ -52,33 +52,41 @@ const ArticleUpdate = ({ id, title, desc, url, ...props }) => {
   };
 
   return (
-    <div className="new-article">
+    
       <form onSubmit={submitUpdate}>
+        <div className="edit-article">
         <h2>Edit Your Article</h2>
+        <label>Title:
         <input
+          className="edit-input" 
           type="text"
           name="title"
           value={editArticle.title}
           onChange={handleChange}
           placeholder="Title..."
-        />
+        /></label>
+        <label>Description:
+        
         <input
+          className="edit-input"
           type="text"
           name="desc"
           value={editArticle.desc}
           onChange={handleChange}
           placeholder="Description..."
-        />
+        /></label>
+        <label>URL:
         <input
+          className="edit-input"
           type="text"
           name="url"
           value={editArticle.url}
           onChange={handleChange}
           placeholder="URL..."
-        />
-        <button>Update Article</button>
-      </form>
+        /></label>
+        <button className="edit-btn">Update Article</button>     
     </div>
+    </form>
   );
 };
 

@@ -14,45 +14,47 @@ const ArticlesCard = ({
   articleTitle,
   articleDesc,
   category,
-  aboutCategory,
   deleteArticle,
   categories,
   updateSingleArticle,
 }) => {
 
-  const handleChange = e => {
-  
-    const catID = categories.filter(c => c.name.toLowerCase() === e.target.value.toLowerCase());
-    const newArticle = {
-      url,
-      title: articleTitle,
-      desc: articleDesc,
-      categoryID: catID[0].id,
-      articleID: id
-    }
-    updateSingleArticle(id, newArticle);
-    console.log(categories)
+const handleChange = e => {
+
+  const catID = categories.filter(c => c.name.toLowerCase() === e.target.value.toLowerCase());
+  const newArticle = {
+    url,
+    title: articleTitle,
+    desc: articleDesc,
+    categoryID: catID[0].id,
+    articleID: id
   }
-
-
-
+  updateSingleArticle(id, newArticle);
+  console.log(categories)
+}
   return (
     <div className="card-body">
-        <h3>Title: {articleTitle}</h3>
-        <p>Description: {articleDesc}</p>
-        <p>Category: {category}</p>
-        <p>About: {aboutCategory}</p>
-        <select onChange={handleChange}
-          data-cy="moveCard" id="moveCard" name="moveCard">
-            <option>  Change Category to...</option>
+        <select 
+          onChange={handleChange}
+          data-cy="moveCard" 
+          id="moveCard" 
+          name="moveCard">
+            <option>  Move to...</option>
             {categories.map(c => {
-    return (
-       <option key={c.id}>{c.name}</option>
-        )
- })}
-
-
-        </select>
+              return (
+                <option key={c.id}>{c.name}</option>
+                  )
+            })}
+        </select>     
+        <h3 className="article-title">{articleTitle}</h3>
+        <p className="article-desc">{articleDesc}</p>
+        <label>Category:</label>
+        <p className="category">{category}</p>
+        <a href={url}>  
+          <div className="article-btn">
+          Go to article
+          </div>
+        </a>
       <div className="edit-delete-container">
         <Link
           to={`/article-update/${id}`}
@@ -71,12 +73,6 @@ const ArticlesCard = ({
           Delete
         </button>
       </div>
-
-    <a href={url}>  
-      <div className="article-btn">
-      Go to article
-      </div>
-    </a>
     </div>
   );
 };

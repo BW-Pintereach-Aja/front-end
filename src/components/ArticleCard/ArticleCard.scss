@@ -1,13 +1,15 @@
 .card-body {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background: #FFF;
-    width: 20vw;
+    width: 16vw;
+    height: auto;
     margin: 8px;
     border-top: 16px solid #fddb3a;
     border-radius: 4px;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
-    padding: 26px;
+    padding: 8px 16px 16px 16px; 
 
     .article-btn {
         align-self: flex-end;
@@ -17,8 +19,7 @@
         background-color: #fddb3a;
         width: 72px;
         color: #000;
-        margin: 26px 12px 8px 12px;
-        margin-top: 26px;
+        margin: 0px 0 8px 12px;
         padding: 8px 8px;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
         border-radius: 4px;
@@ -28,11 +29,18 @@
         }
     }
 
+    #moveCard {
+        padding: 0 16px;
+        margin: 8px auto;
+        height: 32px;
+    }
+
     .delete-btn {
+        border: none;
         background: none;
         padding: 0;
         box-shadow: none;
-        padding-left: 16px;
+        margin-left: 8px;
         cursor: pointer;
     }
 
@@ -41,14 +49,37 @@
         font-size: 1.2rem;
         color: #41444b;
         font-weight: 700;
+        background: none;
+        padding: 0;
+        margin: 0;
     }
     a {
         align-self: flex-end;
         text-decoration: none;
     }
 
-    h3 {
+    .article-title {
         color: black;
-        font-size: 2rem;
+        font-size: 1.6rem;
+        margin-bottom: 4px;
+        margin-top: 8px;
     }
+
+    .article-desc {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .category {
+        margin-top: 4px;
+        font-size: 1.1rem;
+        align-self: flex-start;
+    }
+}
+
+.edit-delete-container{
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
 }

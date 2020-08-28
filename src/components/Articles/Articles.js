@@ -22,9 +22,10 @@ const Articles = (props) => {
 
   console.log("ARTICLES", props.articles);
   return (
-    <>
-      <div className="category">
-        <Category categories={props.category} />
+    <div className="dashboard-display">
+      <div className="dashboard-header">
+        <h1 className="articles-title">All Articles:</h1>
+        <Category categories={props.category}/>
       </div>
       <div className="card-list">
         {props.articles.map((article) => {
@@ -43,8 +44,8 @@ const Articles = (props) => {
             />
           );
         })}
-      </div>
-    </>
+      </div> 
+    </div>
   );
 };
 
