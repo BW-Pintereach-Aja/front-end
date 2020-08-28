@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { deleteArticle, fetchSingleArticle } from "../../redux/actions/articlesActions";
+import { deleteArticle, fetchSingleArticle, fetchCategories, updateSingleArticle} from "../../redux/actions/articlesActions";
 
 import "./ArticleCard.scss";
+
+
 
 const ArticlesCard = ({
   id,
@@ -14,16 +16,42 @@ const ArticlesCard = ({
   category,
   aboutCategory,
   deleteArticle,
+  categories,
+  updateSingleArticle,
 }) => {
+
+  const handleChange = e => {
+  
+    const catID = categories.filter(c => c.name.toLowerCase() === e.target.value.toLowerCase());
+    const newArticle = {
+      url,
+      title: articleTitle,
+      desc: articleDesc,
+      categoryID: catID[0].id,
+      articleID: id
+    }
+    updateSingleArticle(id, newArticle);
+    console.log(categories)
+  }
+
+
+
   return (
     <div className="card-body">
-        <h3>{articleTitle}</h3>
-        <p>{articleDesc}</p>
-        <p>{category}</p>
-        <p>{aboutCategory}</p>
-        <select data-cy="moveCard" id="moveCard" name="moveCard">
-            <option>  Move to...</option>
-            {/* need to map categories here */}
+        <h3>Title: {articleTitle}</h3>
+        <p>Description: {articleDesc}</p>
+        <p>Category: {category}</p>
+        <p>About: {aboutCategory}</p>
+        <select onChange={handleChange}
+          data-cy="moveCard" id="moveCard" name="moveCard">
+            <option>  Change Category to...</option>
+            {categories.map(c => {
+    return (
+       <option key={c.id}>{c.name}</option>
+        )
+ })}
+
+
         </select>
       <div className="edit-delete-container">
         <Link
@@ -53,8 +81,11 @@ const ArticlesCard = ({
   );
 };
 
-// const mapStateToProps = (state) => {
-//   // article: state.articlesReducer.data
-// };
+const mapStateToProps = (state) => {
+  // article: state.articlesReducer.data
+  return {
+    categories: state.articlesReducer.categories
+  }
+};
 
-export default connect(null, { deleteArticle, fetchSingleArticle })(ArticlesCard);
+export default connect(mapStateToProps, { deleteArticle, fetchSingleArticle, fetchCategories, updateSingleArticle})(ArticlesCard);
