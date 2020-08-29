@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { deleteArticle, fetchSingleArticle, fetchCategories, updateSingleArticle} from "../../redux/actions/articlesActions";
+import ArticlesbyCategory from '../ArticlesbyCategory/ArticlesbyCategory'
 
 import "./ArticleCard.scss";
 
@@ -30,7 +31,7 @@ const handleChange = e => {
     articleID: id
   }
   updateSingleArticle(id, newArticle);
-  console.log(categories)
+  console.log("These are categories from ArticleCard", catID)
 }
   return (
     <div className="card-body">
