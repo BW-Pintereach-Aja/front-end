@@ -15,6 +15,7 @@ const CategoryList = ({categories}) => {
         <h3>Your Categories:</h3>
         {categories.map((c) => (
             <NavLink
+                key={c.id}
                 to={`/articles/${c.name}`}
                 className="category-name">
                     {c.name}
